@@ -1,0 +1,15 @@
+{
+  "survey": {
+    "customerHappiness": "سعادة العملاء",
+    "feedback": "يرجى تقديم ملاحظاتك حول الخدمة التي تلقيتها.",
+    "serviceQuestion": "كيف كانت الخدمة المقدمة؟",
+    "recommendation": "توصية العملاء",
+    "recommendationQuestion": "هل توصي بشركتنا؟",
+    "feedbackQuestion": "أي من الخيارات التالية يصف تجربتك بشكل أفضل؟",
+    "ratingQuestion": "كيف تقيم شركتنا على مقياس من 1 إلى 5 نجوم؟",
+    "contactInformation": "معلومات الاتصال",
+    "contactQuestion": "كيف تفضل أن يتم الاتصال بك؟",
+    "additionalComments": "تعليقات إضافية",
+    "additionalCommentsQuestion": "هل هناك أي شيء آخر ترغب في مشاركته؟"
+  }
+}

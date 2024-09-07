@@ -1,0 +1,15 @@
+{
+  "survey": {
+    "customerHappiness": "Customer Happiness",
+    "feedback": "Please provide feedback on the service you received.",
+    "serviceQuestion": "How was the service provided?",
+    "recommendation": "Customer Recommendation",
+    "recommendationQuestion": "Would you recommend Our Company?",
+    "feedbackQuestion": "Which of the following best describes your experience?",
+    "ratingQuestion": "How would you rate our company on a scale of 1 to 5 stars?",
+    "contactInformation": "Contact Information",
+    "contactQuestion": "How would you prefer to be contacted?",
+    "additionalComments": "Additional Comments",
+    "additionalCommentsQuestion": "Is there anything else you would like to share?"
+  }
+}

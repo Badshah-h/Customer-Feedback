@@ -1,0 +1,148 @@
+{
+  "en": [
+    {
+      "step": 1,
+      "title": "Customer Happiness",
+      "description": "Please provide feedback on the service you received.",
+      "question": "How was the service provided?",
+      "type": "radio",
+      "options": [
+        { "value": "Very Bad", "imgSrc": "Very Bad" },
+        { "value": "Bad", "imgSrc": "Bad" },
+        { "value": "Average", "imgSrc": "Average" },
+        { "value": "Happy", "imgSrc": "Happy" }
+      ],
+      "hasTextarea": true
+    },
+    {
+      "step": 2,
+      "title": "Customer Recommendation",
+      "description": "Please let us know how likely you are to recommend our company.",
+      "question": "Would you recommend Our Company?",
+      "type": "checkbox",
+      "options": [
+        { "value": "No" },
+        { "value": "Maybe" },
+        { "value": "Probably" },
+        { "value": "100% Sure" }
+      ],
+      "hasTextarea": false
+    },
+    {
+      "step": 3,
+      "title": "Customer Feedback",
+      "description": "Please provide additional feedback.",
+      "question": "Which of the following best describes your experience?",
+      "type": "radio",
+      "options": [
+        { "value": "Very Bad", "imgSrc": "Very Bad" },
+        { "value": "Bad", "imgSrc": "Bad" },
+        { "value": "Average", "imgSrc": "Average" },
+        { "value": "Happy", "imgSrc": "Happy" }
+      ],
+      "hasTextarea": true
+    },
+    {
+      "step": 4,
+      "title": "Customer Service Rating",
+      "description": "Your opinion matters! Rate our company from 1 to 5 stars to let us know how we are doing.",
+      "question": "How would you rate our company on a scale of 1 to 5 stars?",
+      "type": "rating",
+      "options": [
+        { "value": "1 Star" }
+      ],
+      "hasTextarea": true
+    },
+    {
+      "step": 5,
+      "title": "Contact Information",
+      "description": "Please provide your contact information for follow-up.",
+      "question": "How would you prefer to be contacted?",
+      "type": "contact",
+      "options": [],
+      "hasTextarea": false
+    },
+    {
+      "step": 6,
+      "title": "Additional Comments",
+      "description": "Is there anything else you would like to share?",
+      "question": "Additional Comments",
+      "type": "text",
+      "options": [],
+      "hasTextarea": true
+    }
+  ],
+  "ar": [
+    {
+      "step": 1,
+      "title": "سعادة العملاء",
+      "description": "يرجى تقديم ملاحظاتك حول الخدمة التي تلقيتها.",
+      "question": "كيف كانت الخدمة المقدمة؟",
+      "type": "radio",
+      "options": [
+        { "value": "سيء جداً", "imgSrc": "Very Bad" },
+        { "value": "سيء", "imgSrc": "Bad" },
+        { "value": "متوسط", "imgSrc": "Average" },
+        { "value": "سعيد", "imgSrc": "Happy" }
+      ],
+      "hasTextarea": true
+    },
+    {
+      "step": 2,
+      "title": "توصية العملاء",
+      "description": "يرجى إخبارنا بمدى احتمالية أن توصي بشركتنا.",
+      "question": "هل توصي بشركتنا؟",
+      "type": "checkbox",
+      "options": [
+        { "value": "لا" },
+        { "value": "ربما" },
+        { "value": "من المحتمل" },
+        { "value": "مؤكد 100%" }
+      ],
+      "hasTextarea": false
+    },
+    {
+      "step": 3,
+      "title": "ملاحظات العملاء",
+      "description": "يرجى تقديم ملاحظات إضافية.",
+      "question": "أي من الخيارات التالية يصف تجربتك بشكل أفضل؟",
+      "type": "radio",
+      "options": [
+        { "value": "سيء", "imgSrc": "Very Bad" },
+        { "value": "جيد", "imgSrc": "Average" },
+        { "value": "متوسط", "imgSrc": "Bad" },
+        { "value": "ممتاز", "imgSrc": "Happy" }
+      ],
+      "hasTextarea": true
+    },
+    {
+      "step": 4,
+      "title": "تقييم خدمة العملاء",
+      "description": "رأيك مهم! قيم شركتنا من 1 إلى 5 نجوم لإخبارنا كيف نقوم بعملنا.",
+      "question": "كيف تقيم شركتنا على مقياس من 1 إلى 5 نجوم؟",
+      "type": "rating",
+      "options": [
+        { "value": "1 نجمة" }
+      ],
+      "hasTextarea": true
+    },
+    {
+      "step": 5,
+      "title": "معلومات الاتصال",
+      "description": "يرجى تقديم معلومات الاتصال الخاصة بك للمتابعة.",
+      "question": "كيف تفضل أن يتم الاتصال بك؟",
+      "type": "contact",
+      "options": [],
+      "hasTextarea": false
+    },
+    {
+      "step": 6,
+      "title": "تعليقات إضافية",
+      "description": "هل هناك أي شيء آخر ترغب في مشاركته؟",
+      "question": "تعليقات إضافية",
+      "type": "text",
+      "options": [],
+      "hasTextarea": true
+    }
+  ]
+}
