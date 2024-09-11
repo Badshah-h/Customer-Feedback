@@ -1,0 +1,16 @@
+<Files "*.inc">
+    Require all denied
+</Files>
+<Files "conf*.php">
+    Require all denied
+</Files>
+<Files "*.env">
+    Require all denied
+</Files>
+
+Options -Indexes
+
+RewriteEngine On
+
+# Redirect root URL to /live_portal/public/index.php
+RewriteRule ^$ /customerFeedback/build [L,R=301]
