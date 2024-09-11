@@ -12,5 +12,5 @@ Options -Indexes
 
 RewriteEngine On
 
-# Redirect root URL to /live_portal/public/index.php
+# Redirect root URL to /live_portal/customerFeedback/build
 RewriteRule ^$ /customerFeedback/build [L,R=301]
