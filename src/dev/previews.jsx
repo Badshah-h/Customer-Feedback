@@ -1,8 +1,8 @@
 import React from 'react'
 import {ComponentPreview, Previews} from '@react-buddy/ide-toolbox'
 import {PaletteTree} from './palette'
-import SurveyForm from "../Customer-Happines/SurveyForm";
 import App from "../App.js";
+import SurveyForm from "../components/Survey/SurveyForm.js";
 
 const ComponentPreviews = () => {
     return (

@@ -8,8 +8,6 @@
 Font load
 ===========*/
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,531;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,531;1,600;1,700;1,800;1,900&display=swap");
-
-
 /* Default LTR */
 body.ltr {
   direction: ltr;
@@ -22,23 +20,504 @@ body.rtl {
   text-align: right;
 }
 
-.survey-form-img img {
-  max-width: 100% !important; /* Ensure the image scales down properly */
-  height: auto !important;
-  width: 70%;
-  padding: 0px 0px 114px;
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.survey-form-img {
+/* Basic Reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Jost", sans-serif;
+  box-sizing: border-box;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Prevent scrollbars */
+}
+
+/* Wrapper */
+.wrapper {
   width: 100%;
-  margin-bottom: 20px;
+  height: 100vh; /* Full viewport height */
+  background-color: #ffffff; /* White background for the full page */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Remove padding */
 }
 
-.job-style-two-content {
+/* Main content area */
+.wizard-content-1 {
+  width: 100%;
+  height: 100%; /* Full height of the wrapper */
+  background-color: rgba(211, 153, 49, 0.5); /* Accent color with 50% opacity */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Shadow for depth */
   display: flex;
-  min-height: 100vh; /* Ensure the container takes up at least the full viewport height */
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  flex-direction: column;
+  overflow: auto; /* Allow scrolling if content overflows */
 }
+
+.poll-thank-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust based on your needs */
+  text-align: center;
+}
+
+.thank-you-image {
+  max-width: 100%; /* Adjust as needed */
+  height: auto;
+}
+
+.thank-you-text {
+  margin-top: 20px; /* Adjust as needed */
+}
+
+
+/* Full width for the form container */
+.step-inner-content {
+  width: 100%;
+}
+
+/* Job Style Content Layout */
+.job-style-content {
+  display: flex;
+  align-items: stretch; /* Ensures both sides stretch to the same height */
+  height: 100%; /* Full height for the container */
+  box-sizing: border-box;
+}
+
+/* Left and Right Survey Area */
+.survey-left-area,
+.survey-right-area {
+  flex: 1;
+  /*padding: 20px;*/
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*border-radius: 15px;*/
+  /*height: 100vh;*/
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Survey Content Styling */
+.survey-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  background: #ffffff;
+  /*border-radius: 15px;*/
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  width: 100%;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, .125);
+
+}
+
+
+/* Service Review Section */
+.service-review {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+/* Style for individual labels in the review section */
+
+.service-review label {
+  flex: 1;
+  max-width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f9f9f9;
+  border: 2px solid #D39931;
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  position: relative;
+}
+
+/*.service-review label.selected {*/
+/*  background-color: #D39931;*/
+/*  color: #ffffff;*/
+/*  border-color: #b58e23;*/
+/*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*}*/
+.service-review label.selected  .service-review-text{
+  background-color: #D39931;
+  color: #000000;
+  border-color: #b58e23;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.service-review label:hover {
+  background-color: #f9f9f9; /* Light background on hover */
+  border-color: #000000; /* Darker border on hover */
+}
+
+/*.service-review label.selected:hover {*/
+/*  background-color: #D39931;*/
+/*  color: #ffffff;*/
+/*  border-color: #b58e23;*/
+/*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*}*/
+
+
+.service-review-img img {
+  max-width: 90px;
+  margin-bottom: 1rem;
+  object-fit: contain;
+  border-radius: 50%;
+  transition: opacity 0.3s ease;
+  opacity: 0.9;
+}
+
+.service-review input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.service-review input[type="radio"]:checked + .review_select {
+  display: block;
+  background-color: #D39931;
+}
+
+.service-review-text {
+  font-size: 17px;
+  color: #232222;
+  margin: 0 auto;
+  font-weight: 500;
+  line-height: 34px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 1px 21px rgba(1, 1, 1, 0.1);
+  padding: 0 0.5rem;
+  display: inline-block;
+  position: absolute;
+  width: calc(100% - 20px);
+  text-align: center;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 34px;
+}
+
+.review_select {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #D39931; /* Border for selected state */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: inset 0px 0px 0px 3px rgba(1, 1, 1, 0.2); /* Inner shadow for selected effect */
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  z-index: 1; /* Overlay should be above the label content */
+}
+
+
+/* Survey Content Styling */
+/* Base styles for the survey header and language switcher */
+.survey-header {
+  display: flex;
+  justify-content: space-between; /* Space between title and language switcher */
+  align-items: center; /* Center align items vertically */
+  margin-bottom: 20px;
+
+}
+
+.jw-top-title {
+  flex: 1; /* Allow title to take up available space */
+}
+
+.jw-top-title span {
+  display: block;
+  font-size: 15px;
+  color: #000000;
+  font-weight: 500;
+  margin: 10px;
+}
+
+.jw-top-title h2 {
+  margin: 10px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.header {
+  position: absolute;
+  top: 15px; /* Distance from the top of the card */
+  right: 15px; /* Distance from the right of the card */
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px; /* Space below language switcher */
+
+}
+
+
+/* Language Switcher */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px; /* Space below language switcher */
+}
+
+.language-icon {
+  margin-left: 8px;
+  font-size: 1.5rem;
+  color: #D39931;
+}
+
+/* Styles for RTL when body has class "rtl" */
+body.rtl .language-icon {
+  margin-right: 8px; /* Use margin-right for RTL */
+  margin-left: 0; /* Reset margin-left for RTL */
+}
+
+/* Optionally, explicitly specify LTR styles */
+body.ltr .language-icon {
+  margin-left: 8px; /* Ensure margin-left for LTR */
+  margin-right: 0; /* Reset margin-right for LTR */
+}
+
+.language-select {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  background-color: #D39931;
+  cursor: pointer;
+  outline: none;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+/* Textarea */
+.service-textbox textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.survey-left-area .card {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #000000;
+  /*border-radius: 15px;*/
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /*padding: 25px;*/
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  align-items: center;
+  color: #ffffff;
+}
+
+/*.card:hover, .survey-content:hover {*/
+/*  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);*/
+/*  transform: translateY(-5px);*/
+/*}*/
+/* Image Section */
+.card .survey-form-img {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.center-image {
+  height: auto;
+  margin-top: 5.5rem;
+  margin-bottom: 5.5rem;
+  text-align: center;
+}
+
+/* Image width adjustments */
+.card .survey-form-img img {
+  width: 50%; /* Set image width to 80% */
+  max-width: 100%; /* Ensure it doesn't exceed 100% of its container */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 90px;
+}
+
+/* Text Section */
+.card .job-wizard-left-text {
+  margin-bottom: 20px;
+  text-align: center; /* Center the text */
+}
+
+.card .job-wizard-left-text h1 {
+  font-size: 3.5rem; /* Use rem units for scalability */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: #ffffff;
+
+}
+
+.card .job-wizard-left-text p {
+  color: #ffffff;
+
+  font-size: 1.2rem; /* Use rem units for scalability */
+  max-width: 100%; /* Ensure it fits within the container */
+  margin: 0 auto;
+}
+
+/* Copyright Section */
+.card .w-copyright {
+  color: #ffffff;
+
+  font-size: 1rem; /* Adjusted font size */
+  text-align: center; /* Center the copyright text */
+  margin-top: 1rem; /* Margin for spacing */
+}
+
+
+
+/* Steps Container */
+.steps-container {
+  border-bottom: 2px solid #D39931;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(135deg, #D39931 0%, #ffffff 100%);
+}
+
+/* Reset counter for step numbers */
+.steps-list {
+  counter-reset: step-counter;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 15px;
+  color: #ffffff;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Individual Steps */
+.steps-item {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Active Step */
+.steps-item.active {
+  color: #D39931;
+  transform: scale(1.1); /* Slightly enlarge the active step */
+}
+
+/* Step Number or Check Mark for Completed Steps */
+.steps-item::before {
+  content: counter(step-counter);
+  counter-increment: step-counter;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #D39931;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  border: 1px solid #ffffff;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Checkmark */
+.checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  font-size: 24px; /* Font size for checkmark */
+  color: #D39931; /* Checkmark color */
+  background-color: #ffffff; /* Checkmark background */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none; /* Hide by default */
+}
+
+/* Show checkmark for completed steps */
+.steps-item.completed .checkmark {
+  display: flex;
+}
+
+/* Optional - Step Connector */
+.steps-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -25px;
+  width: 50px;
+  height: 2px;
+  background-color: #D39931;
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease;
+}
+
+/* Active step number inside the circle */
+.steps-item.active::before {
+  background-color: #000000;
+  color: #fff;
+}
+
+
+/* Progress Bar */
+.steps-item.active + .steps-item::after {
+  background-color: #D39931; /* active connector */
+}
+
+
+
+
 
 
 .survey-ratting {
@@ -128,19 +607,7 @@ Color Code
 
 /*global area*/
 /*----------------------------------------------------*/
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.5;
-  background: #f9f9f9;
-  color: #2f3146;
-  font-family: "Jost", sans-serif;
-  -moz-osx-font-smoothing: antialiased;
-  -webkit-font-smoothing: antialiased;
-}
+
 
 ::selection {
   color: #fff;
@@ -349,15 +816,19 @@ h6 {
   transform: scale(1);
 }
 
+/* Base styles for buttons */
 .actions {
-  float: right;
+  display: flex;
+  justify-content: flex-end; /* Aligns items to the right */
   margin-top: 55px;
+  width: 100%; /* Ensures the container spans the full width */
 }
+
 .actions li {
   color: #fff;
   height: 58px;
   width: 230px;
-  font-size: 17px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   text-align: center;
@@ -369,38 +840,97 @@ h6 {
   margin-left: 10px;
   background-color: #cdcdcd;
 }
+
+.actions li .js-btn-submit {
+  background-color: #D39931;
+  display: block;
+  width: 100%;
+  transition: 0.3s all ease-in-out;
+}
+
 .actions li .js-btn-next {
   background-color: #D39931;
+  display: block;
+  width: 100%;
+  transition: 0.3s all ease-in-out;
 }
+
 .actions li .js-btn-prev {
   color: #1a1a1a;
+  display: block;
+  width: 100%;
+  transition: 0.3s all ease-in-out;
 }
+
 .actions li span, .actions li button {
   display: block;
   width: 100%;
   transition: 0.3s all ease-in-out;
 }
+
 .actions li span:hover, .actions li button:hover {
   color: #fff;
   background-color: #D39931;
 }
+
 .actions li button {
   border: none;
   text-transform: uppercase;
   font-weight: 500;
 }
 
+
+/* General Styles */
+.form-input-inner {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-input-inner input {
+  padding-left: 50px; /* Adjust space for the icon */
+  height: 45px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.icon-bg {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #777;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .form-input-inner input {
+    padding-left: 40px  !important; /* Adjust padding for tablets and smaller screens */
+  }
+
+  .icon-bg {
+    left: 8px  !important; /* Adjust icon position for tablets */
+    font-size: 14px !important; /* Adjust icon size for tablets */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .form-input-inner input {
+    padding-left: 35px  !important; /* Further adjust padding for very small screens */
+  }
+
+  .icon-bg {
+    left: 5px  !important; /* Further adjust icon position for very small screens */
+    font-size: 12px  !important; /* Further adjust icon size for very small screens */
+  }
+}
+
+
+
 /*---------------------------------------------------- */
 /*inner area*/
 /*----------------------------------------------------*/
-.wizard-content-1 {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 100%;
-  background-color: #fff;
-  box-shadow: 0px 1px 51px 0px rgba(1, 1, 1, 0.06);
 
-}
 
 .job-style-two-content {
   display: flex;
@@ -410,70 +940,45 @@ h6 {
 /* Additional styles for RTL support */
 
 
-.job-style-two-content > .job-wizard-left-area {
-  width: 48%;
-  min-height: 100vh;
-  padding: 115px 100px 80px;
-  background-image: linear-gradient(14deg, #000000 0%, #000000 100%);
-  overflow: hidden;
+
+
+.job-wizard-left-text h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: black;
 }
 
-.wizard-content-1 .job-wizard-left-area:before {
-  top: -22px;
-  content: "";
-  width: 40px;
-  height: 110%;
-  right: -10px;
-  position: absolute;
-  background-color: #D39931;
-  transform: rotate(-7deg);
+.job-wizard-left-text p {
+  font-size: 1.1rem;
+  color: black;
+
 }
 
-.wizard-content-1 .job-wizard-left-area:after {
-  top: -20px;
-  content: "";
-  width: 65px;
-  height: 110%;
-  right: -35px;
-  position: absolute;
-  background-color: #fff;
-  transform: rotate(-4deg);
+.w-copyright {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: black;
+
 }
 
-.wizard-content-1 .job-wizard-left-area h1 {
-  color: #fff;
-  font-size: 50px;
-  font-weight: 700;
-  line-height: 1.1;
-  padding-bottom: 20px;
-}
 
-.wizard-content-1 .job-wizard-left-area p {
-  color: #fff;
-  font-size: 27px;
-  max-width: 600px;
-}
 
-.wizard-content-1 .job-wizard-left-area .w-copyright {
-  color: #fff;
-  bottom: 40px;
-  font-size: 22px;
-}
+
 
 .wizard-content-1 .job-wizard-right-area {
-  width: 52%;
+  width: 55%;
   z-index: 1;
-  position: relative;
   padding: 115px 100px 80px;
+  padding: 2rem;
+  background: linear-gradient(135deg, #D39931 0%, #ffffff 100%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+
 }
 .wizard-content-1 .job-wizard-right-area .jw-top-title {
   padding-bottom: 30px;
 }
-.wizard-content-1 .job-wizard-right-area .jw-top-title h2 {
-  font-size: 42px;
-  font-weight: 700;
-  color: #1b1b1b;
-}
+
 .wizard-content-1 .job-wizard-right-area .jw-top-title h3 {
   color: #232222;
   font-size: 33px;
@@ -566,60 +1071,11 @@ h6 {
   font-size: 17px;
 }
 
-.service-review {
-  padding-bottom: 75px;
-}
-.service-review li {
-  width: 137px;
-  height: 137px;
-  border-radius: 5px;
-  margin-right: 60px;
-  text-align: center;
-  position: relative;
-  display: inline-block;
-  background-color: #fffced;
-}
-.service-review li span {
-  display: block;
-}
-.service-review li .ser_rev {
-  display: none;
-}
-.service-review li .review_select {
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: none;
-  position: absolute;
-  border: 2px solid #D39931;
-}
-.service-review li .ser_rev:checked ~ .review_select {
-  display: block;
-}
-.service-review li .service-review-img {
-  padding-top: 15px;
-}
-.service-review li .service-review-text {
-  left: 0;
-  right: 0;
-  bottom: -10px;
-  width: 108px;
-  height: 30px;
-  margin: 0 auto;
-  color: #232222;
-  font-size: 15px;
-  position: absolute;
-  font-weight: 500;
-  line-height: 30px;
-  border-radius: 20px;
-  background-color: #fff;
-  box-shadow: 0px 1px 21px 0px rgba(1, 1, 1, 0.1);
-}
-
 .service-textbox span {
   left: 18px;
   top: -18px;
   width: 120px;
+  display: none;
   height: 35px;
   margin: 0 auto;
   color: #232222;
@@ -798,382 +1254,1204 @@ h6 {
 *	10 - media screen and (max-width: 320px)
 ================================================== */
 /* Up to 1024px */
-@media screen and (max-width: 1024px) {
 
-  .job-style-two-content > .job-wizard-left-area:before,
-  .job-style-two-content > .job-wizard-left-area:after {
-    display: none; /* Hide pseudo-elements for smaller screens */
+/* Media Queries */
+
+/* Default styles for very large screens (4K) */
+@media screen and (min-width: 2560px) {
+  body {
+    font-size: 18px !important; /* Larger base font size for readability on large screens */
   }
 
-  .survey-form-img img {
-    width: 90%; /* Further adjust image width */
+  h1 {
+    font-size: 3rem !important; /* Large heading for big screens */
   }
 
-  .job-style-two-content > .job-wizard-left-area {
-    padding: 60px 30px; /* Adjust padding for smaller screens */
+  h2 {
+    font-size: 2.5rem !important;
   }
 
-  .wizard-content-1 .job-wizard-left-area .w-copyright {
-    font-size: 14px; /* Smaller font size for copyright */
+  h3 {
+    font-size: 2rem !important;
+  }
+
+  p {
+    font-size: 1.25rem !important; /* Larger paragraph text */
+  }
+
+  .container {
+    padding: 40px !important; /* Generous padding for large screens */
+  }
+
+  .card {
+    padding: 30px !important; /* Large padding inside cards */
+  }
+
+  .steps-item {
+    font-size: 22px !important;
+  }
+
+  .checkmark {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 32px !important;
+  }
+
+  .language-select {
+    font-size: 18px !important;
   }
 }
 
-@media screen and (max-width: 1835px) {
-  .survey-form-img img {
-    width: 75%; /* Adjust image width */
-    padding: 0px 0px 150px;
+/* Media query for viewport widths around 1920px */
+@media screen and (max-width: 1920px) {
+  body {
+    font-size: 16px !important;
   }
 
-  .service-review li {
-    margin-right: 27px;
-    margin-bottom: 40px;
-    justify-content: center;
+  h1 {
+    font-size: 2.5rem !important;
   }
 
-  .job-style-two-content > .job-wizard-left-area:after {
-    right: -39px;
+  h2 {
+    font-size: 2rem !important;
+  }
+
+  h3 {
+    font-size: 1.75rem !important;
+  }
+
+  p {
+    font-size: 1.15rem !important;
+  }
+
+  .container {
+    padding: 30px !important;
+  }
+
+  .card {
+    padding: 25px !important;
+  }
+
+  .steps-item {
+    font-size: 20px !important;
+  }
+
+  .checkmark {
+    font-size: 28px !important;
+  }
+
+  .language-select {
+    font-size: 16px !important;
+  }
+}
+
+/* Media query for viewport widths around 1440px */
+@media screen and (max-width: 1440px) {
+  body {
+    font-size: 15px !important;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  h2 {
+    font-size: 1.75rem !important;
+  }
+
+  h3 {
+    font-size: 1.5rem !important;
+  }
+
+  p {
+    font-size: 1rem !important;
+  }
+
+  .container {
+    padding: 20px !important;
+  }
+
+  .card {
+    padding: 20px !important;
+  }
+
+  .steps-item {
+    font-size: 18px !important;
+  }
+
+  .checkmark {
+    font-size: 24px !important;
+  }
+
+  .language-select {
+    font-size: 15px !important;
+  }
+}
+
+/* Media query for viewport widths around 1280px */
+@media screen and (max-width: 1280px) {
+  body {
+    font-size: 14px !important;
+  }
+
+  h1 {
+    font-size: 1.75rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  h3 {
+    font-size: 1.25rem !important;
+  }
+
+  p {
+    font-size: 0.9rem !important;
+  }
+
+  .container {
+    padding: 15px !important;
+  }
+
+  .card {
+    padding: 18px !important;
+  }
+
+  .steps-item {
+    font-size: 16px !important;
+  }
+
+  .checkmark {
+    font-size: 20px !important;
+  }
+
+  .language-select {
+    font-size: 14px !important;
+  }
+}
+
+/* Media query for viewport widths around 1199px */
+@media screen and (max-width: 1199px) {
+  body {
+    font-size: 13px !important;
+  }
+
+  h1 {
+    font-size: 1.5rem !important;
+  }
+
+  h2 {
+    font-size: 1.25rem !important;
+  }
+
+  h3 {
+    font-size: 1.15rem !important;
+  }
+
+  p {
+    font-size: 0.85rem !important;
+  }
+
+  .container {
+    padding: 10px !important;
+  }
+
+  .card {
+    padding: 15px !important;
+  }
+
+  .steps-item {
+    font-size: 14px !important;
+  }
+
+  .checkmark {
+    font-size: 16px !important;
+  }
+
+  .language-select {
+    font-size: 13px !important;
+  }
+}
+
+/* Media query for viewport widths around 991px */
+@media screen and (max-width: 991px) {
+  body {
+    font-size: 12px !important;
+  }
+
+  h1 {
+    font-size: 1.25rem !important;
+  }
+
+  h2 {
+    font-size: 1rem !important;
+  }
+
+  h3 {
+    font-size: 0.9rem !important;
+  }
+
+  p {
+    font-size: 0.75rem !important;
+  }
+
+  .container {
+    padding: 8px !important;
+  }
+
+  .card {
+    padding: 12px !important;
+  }
+
+  .steps-item {
+    font-size: 12px !important;
+  }
+
+  .checkmark {
+    font-size: 14px !important;
+  }
+
+  .language-select {
+    font-size: 12px !important;
+  }
+}
+
+/* Media query for viewport widths around 767px */
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 11px !important;
+  }
+
+  h1 {
+    font-size: 1rem !important;
+  }
+
+  h2 {
+    font-size: 0.875rem !important;
+  }
+
+  h3 {
+    font-size: 0.75rem !important;
+  }
+
+  p {
+    font-size: 0.7rem !important;
+  }
+
+  .container {
+    padding: 5px !important;
+  }
+
+  .card {
+    padding: 10px !important;
+  }
+
+  .steps-item {
+    font-size: 10px !important;
+  }
+
+  .checkmark {
+    font-size: 12px !important;
+  }
+
+  .language-select {
+    font-size: 11px !important;
+  }
+}
+
+/* Media query for viewport widths around 580px */
+@media screen and (max-width: 580px) {
+  body {
+    font-size: 10px !important;
+  }
+
+  h1 {
+    font-size: 0.9rem !important;
+  }
+
+  h2 {
+    font-size: 0.75rem !important;
+  }
+
+  h3 {
+    font-size: 0.65rem !important;
+  }
+
+  p {
+    font-size: 0.6rem !important;
+  }
+
+  .container {
+    padding: 5px !important;
+  }
+
+  .card {
+    padding: 8px !important;
+  }
+
+  .steps-item {
+    font-size: 8px !important;
+  }
+
+  .checkmark {
+    font-size: 10px !important;
+  }
+
+  .language-select {
+    font-size: 10px !important;
+  }
+}
+
+/* Media query for viewport widths around 480px */
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 9px !important;
+  }
+
+  h1 {
+    font-size: 0.75rem !important;
+  }
+
+  h2 {
+    font-size: 0.65rem !important;
+  }
+
+  h3 {
+    font-size: 0.55rem !important;
+  }
+
+  p {
+    font-size: 0.5rem !important;
+  }
+
+  .container {
+    padding: 3px !important;
+  }
+
+  .card {
+    padding: 5px !important;
+  }
+
+  .steps-item {
+    font-size: 6px !important;
+  }
+
+  .checkmark {
+    font-size: 8px !important;
+  }
+
+  .language-select {
+    font-size: 9px !important;
+  }
+}
+
+
+
+@media screen and (min-width: 2560px) {
+  .survey-rate-text {
+    font-size: 1.25rem;
+  }
+
+  .rate-value {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  .survey-rate-text {
+    font-size: 1.1rem;
+  }
+
+  .rate-value {
+    font-size: 2rem;
   }
 }
 
 @media screen and (max-width: 1440px) {
-  .wizard-content-1 .job-wizard-left-area:before,
-  .wizard-content-1 .job-wizard-left-area:after {
-    display: none;
+  .survey-rate-text {
+    font-size: 1rem;
   }
 
-  .service-review ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  .rate-value {
+    font-size: 1.75rem;
   }
-
-  .service-review li {
-    margin-right: 30px;
-    margin-bottom: 20px;
-
-  }
-
-  .service-review-img {
-    display: block;
-    margin: 0 auto; /* Center the image */
-  }
-
-  .survey-form-img img {
-    width: 80%; /* Adjust image width */
-    padding: 0px 0px 150px;
-  }
-
-
-
 }
 
-@media screen and (max-width: 1280px) and (min-width: 1440px){
-  .service-review li {
-    margin-bottom: 30px;
-    flex-direction: column; /* Stack items vertically */
+@media screen and (max-width: 767px) {
+  .survey-rate-text {
+    font-size: 0.85rem;
+  }
+
+  .rate-value {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+
+/*survey header */
+/* Extra Large Screens (4K) */
+@media screen and (min-width: 2560px) {
+  .survey-header {
+    margin-bottom: 30px; /* Increased margin for more spacing */
+  }
+
+  .jw-top-title span {
+    font-size: 1.2rem; /* Larger font size */
+  }
+
+  .jw-top-title h2 {
+    font-size: 2.5rem; /* Larger font size */
+  }
+
+  .language-switcher {
+    margin-bottom: 30px; /* Increased margin */
+  }
+
+  .language-icon {
+    font-size: 2rem; /* Larger icon */
+  }
+
+  .language-select {
+    font-size: 1.2rem; /* Larger font size */
+    padding: 10px 15px; /* Increased padding */
+  }
+}
+
+/* Large Screens */
+@media screen and (max-width: 2560px) and (min-width: 1920px) {
+  .survey-header {
+    margin-bottom: 25px; /* Moderate margin */
+  }
+
+  .jw-top-title span {
+    font-size: 1.1rem; /* Slightly larger font size */
+  }
+
+  .jw-top-title h2 {
+    font-size: 2.2rem; /* Slightly larger font size */
+  }
+
+  .language-switcher {
+    margin-bottom: 25px; /* Moderate margin */
+  }
+
+  .language-icon {
+    font-size: 1.8rem; /* Slightly larger icon */
+  }
+
+  .language-select {
+    font-size: 1.1rem; /* Slightly larger font size */
+    padding: 8px 12px; /* Moderate padding */
+  }
+}
+
+/* Medium Screens */
+@media screen and (max-width: 1920px) and (min-width: 1440px) {
+  .survey-header {
+    margin-bottom: 20px; /* Standard margin */
+  }
+
+  .jw-top-title span {
+    font-size: 1rem; /* Standard font size */
+  }
+
+  .jw-top-title h2 {
+    font-size: 2rem; /* Standard font size */
+  }
+
+  .language-switcher {
+    margin-bottom: 20px; /* Standard margin */
+  }
+
+  .language-icon {
+    font-size: 1.5rem; /* Standard icon size */
+  }
+
+  .language-select {
+    font-size: 1rem; /* Standard font size */
+    padding: 5px 10px; /* Standard padding */
+  }
+}
+
+/* Small Screens */
+@media screen and (max-width: 1440px) {
+  .survey-header {
+    flex-direction: column; /* Stack vertically */
+    align-items: flex-start; /* Align to start */
+  }
+
+  .jw-top-title {
+    margin-bottom: 10px; /* Reduced margin */
+  }
+
+  .jw-top-title span {
+    font-size: 0.9rem; /* Smaller font size */
+  }
+
+  .jw-top-title h2 {
+    font-size: 1.8rem; /* Smaller font size */
+  }
+
+  .language-switcher {
+    margin-bottom: 15px; /* Reduced margin */
+  }
+
+  .language-icon {
+    font-size: 1.3rem; /* Smaller icon size */
+  }
+
+  .language-select {
+    font-size: 0.9rem; /* Smaller font size */
+    padding: 4px 8px; /* Reduced padding */
+  }
+}
+
+/* Extra Small Screens */
+@media screen and (max-width: 767px) {
+  .survey-header {
+    flex-direction: column; /* Stack vertically */
+    align-items: center; /* Center align */
+  }
+
+  .jw-top-title {
+    text-align: center; /* Center align text */
+  }
+
+  .jw-top-title span {
+    font-size: 0.8rem; /* Smaller font size */
+  }
+
+  .jw-top-title h2 {
+    font-size: 1.5rem; /* Smaller font size */
+  }
+
+  .language-switcher {
+    margin-bottom: 10px; /* Reduced margin */
+  }
+
+  .language-icon {
+    font-size: 1.2rem; /* Smaller icon size */
+  }
+
+  .language-select {
+    font-size: 0.8rem; /* Smaller font size */
+    padding: 3px 6px; /* Reduced padding */
+  }
+}
+
+/* Extra Extra Small Screens */
+@media screen and (max-width: 480px) {
+  .survey-header {
+    padding: 10px; /* Padding around header */
+    flex-direction: column; /* Align items horizontally */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center align items vertically */
+  }
+
+  .jw-top-title {
+    flex: 1; /* Allow title to take up available space */
+    text-align: center; /* Center align text */
+    margin-right: 10px; /* Space between title and language switcher */
+  }
+
+  .jw-top-title span {
+    font-size: 0.7rem; /* Smaller font size */
+  }
+
+  .jw-top-title h2 {
+    font-size: 1.2rem; /* Smaller font size */
+  }
+
+  .language-switcher {
+    margin: 0; /* Remove bottom margin */
+  }
+
+  .language-icon {
+    font-size: 1rem; /* Smaller icon size */
+  }
+
+  .language-select {
+    font-size: 0.7rem; /* Smaller font size */
+    padding: 2px 4px; /* Minimal padding */
+  }
+}
+
+
+
+/* Action buttons */
+/* Extra Large Screens (4K) */
+@media screen and (min-width: 2560px) {
+  .actions li {
+    font-size: 1.1rem; /* Slightly larger font */
+    height: 48px; /* Increase height a bit */
+    width: 180px; /* Slightly wider */
+    line-height: 48px; /* Ensure proper centering */
+  }
+
+  .actions li .js-btn-next, .actions li .js-btn-prev {
+    font-size: 1.1rem; /* Slightly larger for readability */
+  }
+}
+
+/* Large Screens (1920px and below) */
+@media screen and (max-width: 1920px) {
+  .actions li {
+    font-size: 1rem; /* Standard font size */
+    height: 45px; /* Adjust height */
+    width: 170px; /* Narrower buttons */
+    line-height: 45px; /* Consistent centering */
+  }
+
+  .actions li .js-btn-next, .actions li .js-btn-prev {
+    font-size: 1rem;
+  }
+}
+
+/* Medium Screens (1440px and below) */
+@media screen and (max-width: 1440px) {
+  .actions li {
+    font-size: 1rem;
+    height: 42px;
+    width: 160px;
+    line-height: 44px;
+  }
+
+  .actions li .js-btn-next, .actions li .js-btn-prev {
+    font-size: 1rem;
+  }
+}
+
+/* Small Screens (768px and below) */
+@media screen and (max-width: 768px) {
+  .actions {
+    float: none;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .actions li {
+    font-size: 0.9rem; /* Slightly smaller font */
+    height: 40px; /* Smaller height */
+    width: 140px; /* Narrower buttons */
+    line-height: 40px; /* Ensure proper centering */
+  }
+
+  .actions li .js-btn-next, .actions li .js-btn-prev {
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra Small Screens (480px and below) */
+@media screen and (max-width: 480px) {
+  .actions li {
+    font-size: 0.85rem; /* Decrease font size for smaller screens */
+    height: 35px; /* Small height */
+    width: 120px; /* Smaller width */
+    line-height: 35px; /* Ensure proper centering */
+  }
+
+  .actions li .js-btn-next, .actions li .js-btn-prev {
+    font-size: 0.85rem;
+  }
+}
+
+
+
+/*service review*/
+/* Extra Small Screens (XS) */
+@media (max-width: 320px) {
+  .service-review {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-review label {
+    max-width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
   }
 
   .service-review-img img {
-    max-width: 100%; /* Ensure images are responsive */
+    max-width: 60px;
+  }
+
+  .service-review-text {
+    font-size: 13px;
+    line-height: 26px;
+    height: 26px;
+  }
+}
+
+/* Small Screens (SM) */
+@media (min-width: 321px) and (max-width: 480px) {
+  .service-review {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-review label {
+    max-width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .service-review-img img {
+    max-width: 70px;
+  }
+
+  .service-review-text {
+    font-size: 14px;
+    line-height: 28px;
+    height: 28px;
+  }
+}
+
+/* Medium Screens (MD) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .service-review {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .service-review label {
+    max-width: 120px;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .service-review-img img {
+    max-width: 80px;
+  }
+
+  .service-review-text {
+    font-size: 15px;
+    line-height: 30px;
+    height: 30px;
+  }
+}
+
+/* Large Screens (LG) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .service-review {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .service-review label {
+    max-width: 140px;
+    padding: 0.9rem;
+    font-size: 1.1rem;
+  }
+
+  .service-review-img img {
+    max-width: 85px;
+  }
+
+  .service-review-text {
+    font-size: 16px;
+    line-height: 32px;
+    height: 32px;
+  }
+}
+
+/* Extra Large Screens (XL) */
+@media (min-width: 1025px) {
+  .service-review {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .service-review label {
+    max-width: 160px;
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .service-review-img img {
+    max-width: 90px;
+  }
+
+  .service-review-text {
+    font-size: 17px;
+    line-height: 34px;
+    height: 34px;
+  }
+}
+
+/* Extra Large Screens (4K) */
+@media (min-width: 2560px) {
+  .service-review {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem; /* Increased gap for better spacing */
+  }
+
+  .service-review label {
+    max-width: 180px; /* Increased max-width for labels */
+    padding: 1.2rem; /* Increased padding for better touch targets */
+    font-size: 1.2rem; /* Larger font size for readability */
+  }
+
+  .service-review-img img {
+    max-width: 100px; /* Slightly larger image size */
+  }
+
+  .service-review-text {
+    font-size: 18px; /* Larger font size for readability */
+    line-height: 36px; /* Increased line height */
+    height: 36px; /* Adjust height for larger text */
+  }
+}
+
+
+
+/*right side*/
+/* Responsive Styles */
+@media screen and (max-width: 1200px) {
+  .survey-right-area {
+    padding: 15px;
+  }
+
+  .survey-left-area {
+    padding: 15px;
+  }
+
+  .survey-content {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .survey-right-area {
+    flex-direction: column; /* Stack elements vertically */
+    padding: 10px;
+  }
+
+  .survey-left-area {
+    padding: 10px;
+  }
+
+  .survey-content {
+    padding: 10px;
+  }
+
+  .survey-header {
+    text-align: center; /* Center align text */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .survey-right-area {
+    padding: 5px;
+  }
+
+  .survey-left-area {
+    padding: 5px;
+  }
+
+  .survey-content {
+    padding: 5px;
+  }
+
+  .survey-header {
+    font-size: 0.8rem; /* Adjust font size for smaller screens */
+  }
+
+  .language-switcher {
+    margin-bottom: 20px; /* Space below language switcher */
+  }
+
+  .service-review label {
+    display: block; /* Stack labels vertically */
+    margin-bottom: 10px; /* Space between items */
+  }
+
+  .service-textbox textarea {
+    width: 100%;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+  }
+
+  .actions ul {
+    text-align: center; /* Center align actions */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .survey-header {
+    font-size: 0.7rem; /* Smaller font size */
+  }
+
+  .language-switcher {
+    font-size: 0.7rem; /* Smaller font size */
+    margin-bottom: 30px; /* Minimal margin */
+  }
+
+  .service-review img {
+    width: 50px; /* Adjust image size */
     height: auto;
   }
 
-  .job-style-two-content > .job-wizard-left-area {
-    padding: 80px 50px;
-    justify-content: center;
-  }
-}
-
-@media screen and (max-width: 1440px) {
-
-  .actions li {
-    justify-content: center;
-    height: 45px;
-    width: 148px;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: center;
-    line-height: 49px;
+  .service-review label {
+    margin-bottom: 20px; /* Space between items */
   }
 
-  .wizard-content-1 .job-wizard-right-area .jw-top-title h3 {
-    color: #232222;
-    font-size: 28px;
-    font-weight: 500;
+  .service-textbox textarea {
+    font-size: 0.7rem; /* Smaller font size */
+    padding: 5px; /* Adjust padding */
   }
 
-  .wizard-content-1 .job-wizard-left-area h1 {
-    color: #fff;
-    font-size: 35px;
-    font-weight: 600;
-    line-height: 1.5;
-    padding-bottom: 10px;
-  }
-
-  .wizard-content-1 .job-wizard-left-area p {
-    color: #fff;
-    font-size: 20px;
-    max-width: 500px;
-  }
-}
-
-@media screen and (max-width: 1280px) and (min-width: 991px) {
-  .wizard-content-1 .job-wizard-left-area .w-copyright {
-    margin-top: 40px;
-    padding-top: 30px;
-    display: block;
-    position: static !important;
-    font-size: 21px;
-  }
-}
-
-@media screen and (max-width: 991px) {
-  .job-style-two-content {
-    display: block !important;
-  }
-
-  .wizard-content-1 .job-wizard-right-area {
-    width: 100%;
-    padding: 100px 40px;
-    text-align: center; /* Center text and content */
-    align-items: center; /* Center content horizontally */
-  }
-
-  .job-wizard-left-area {
-    width: 100%;
-    padding: 100px 40px;
-    text-align: center; /* Center text and content */
-    display: flex; /* Use flexbox for alignment */
-    flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-  }
-
-  .wizard-content-1 .job-wizard-left-area p {
-    color: #fff;
-    font-size: 27px;
-    max-width: 100%; /* Allow paragraph to take full width for centering */
-    text-align: center; /* Center text inside paragraph */
-    margin: 0; /* Remove default margins */
-    padding: 0; /* Remove any padding */
-  }
-
-  .wizard-content-1 .job-wizard-left-area .w-copyright {
-    margin-top: 40px;
-    padding-top: 30px;
-    display: block;
-    position: static !important;
-    font-size: 21px;
-  }
-
-  .actions {
-    float: none;
-  }
-
-  .wizard-content-1 {
-    box-shadow: none;
+  .actions ul {
+    padding: 0;
     margin: 0;
   }
 
-  .service-review li {
-    margin-right: 30px;
-    margin-bottom: 20px;
-    flex-direction: column;
-  }
-
-  .survey-form-img img {
-    width: 60%;
-    padding: 0px 0px 150px;
-  }
-
   .actions li {
-    justify-content: center;
-    height: 45px;
-    width: 148px;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: center;
-    line-height: 49px;
+    margin-bottom: 5px; /* Space between buttons */
   }
 }
 
+
+
+/*left side*//* Responsive Styles */
+
+/* Extra Small Screens (up to 479px) */
+@media screen and (max-width: 479px) {
+
+  .card .job-wizard-left-text h1 {
+    font-size: 1.5rem !important; /* Reduce font size */
+  }
+
+  .card .job-wizard-left-text p {
+    font-size: 0.9rem !important; /* Reduce font size */
+  }
+
+  .card .w-copyright {
+    font-size: 0.7rem !important; /* Reduce font size */
+  }
+}
+
+/* Small Screens (480px to 767px) */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+
+  .card .job-wizard-left-text h1 {
+    font-size: 2rem !important; /* Adjust font size */
+  }
+
+  .card .job-wizard-left-text p {
+    font-size: 1rem !important; /* Adjust font size */
+  }
+
+  .card .w-copyright {
+    font-size: 0.9rem !important; /* Adjust font size */
+  }
+}
+
+/* Medium Screens (768px to 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .card .job-wizard-left-text h1 {
+    font-size: 2.5rem !important; /* Increase font size */
+  }
+
+  .card .job-wizard-left-text p {
+    font-size: 1.2rem !important; /* Increase font size */
+  }
+
+  .card .w-copyright {
+    font-size: 1.1rem; /* Increase font size */
+  }
+}
+
+/* Large Screens (1024px to 1439px) */
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+
+  .card .survey-form-img img {
+    width: 50%; /* Default image size for large desktops */
+  }
+
+  .card .job-wizard-left-text h1 {
+    font-size: 2.6rem !important; /* Increase font size */
+  }
+
+  .card .job-wizard-left-text p {
+    font-size: 1.0rem !important; /* Increase font size */
+  }
+
+  .card .w-copyright {
+    font-size: 1.3rem !important; /* Increase font size */
+  }
+}
+
+/* Extra Large Screens (1440px and up) */
+@media screen and (min-width: 1440px) {
+
+  .card .survey-form-img img {
+    width: 50%; /* Default image size for large desktops */
+  }
+
+  .survey-form-img {
+    margin-top: 6rem; /* Increased space between the image and language switcher */
+  }
+
+  .card .job-wizard-left-text h1 {
+    font-size: 3rem !important; /* Increase font size */
+  }
+
+  .card .job-wizard-left-text p {
+    font-size: 1.6rem !important; /* Increase font size */
+  }
+
+  .card .w-copyright {
+    font-size: 1.4rem !important; /* Increase font size */
+  }
+}
+
+
+/* Extra small devices (phones, < 600px) */
+@media (max-width: 600px) {
+  .card .survey-form-img img {
+    width: 90%; /* Increase image width to 80% */
+  }
+
+  .card .job-wizard-left-text h1 {
+    font-size: 2rem; /* Smaller font for headers */
+  }
+
+  .survey-form-img {
+    margin-top: 6rem; /* Increased space between the image and language switcher */
+  }
+
+  .card .job-wizard-left-text p {
+    font-size: 1rem; /* Adjust paragraph font size */
+  }
+
+  .card .w-copyright {
+    font-size: 0.8rem;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px - 768px) */
+@media (min-width: 600px) and (max-width: 768px) {
+  .card .survey-form-img img {
+    width: 80%; /* Slightly smaller for medium devices */
+  }
+
+  .survey-form-img {
+    margin-top: 6rem; /* Increased space between the image and language switcher */
+  }
+
+  .card .job-wizard-left-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .card .job-wizard-left-text p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .card .survey-form-img img {
+    width: 80%; /* Medium-sized images for tablets */
+  }
+  .survey-form-img {
+    margin-top: 6rem; /* Increased space between the image and language switcher */
+  }
+  .card .job-wizard-left-text h1 {
+    font-size: 3rem;
+  }
+
+  .card .job-wizard-left-text p {
+    font-size: 1.2rem;
+  }
+}
+
+/* Large devices (desktops, 1024px - 1200px) */
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .card .survey-form-img img {
+    width: 70%; /* Larger image for desktop screens */
+  }
+  .survey-form-img {
+    margin-top: 6rem; /* Increased space between the image and language switcher */
+  }
+
+  .card .job-wizard-left-text h1 {
+    font-size: 3rem;
+  }
+
+  .card .job-wizard-left-text p {
+    font-size: 1.3rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .survey-form-img {
+    margin-top: 6rem; /* Increased space between the image and language switcher */
+  }
+
+  .card .survey-form-img img {
+    width: 60%; /* Default image size for large desktops */
+  }
+
+  .card .job-wizard-left-text h1 {
+    font-size: 3rem;
+  }
+
+  .card .job-wizard-left-text p {
+    font-size: 1.4rem;
+  }
+}
+
+/* General adjustments for small screens */
 @media (max-width: 768px) {
-  .job-style-two-content {
-    flex-direction: column;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
   }
 
-  .job-style-two-content > .job-wizard-left-area {
-    padding: 40px 20px;
-    min-height: auto;
+  /* Adjust image margin on small screens */
+  .survey-form-img {
+    margin-top: 6rem; /* Increased space between the image and language switcher */
   }
+
+  /* Ensure image is responsive */
   .survey-form-img img {
-    width: 70%;
-    padding: 0px 0px 132px;
+    width: 80%; /* Keep the image size responsive */
+    max-width: 100%;
+    height: auto;
   }
 
-  .wizard-content-1 .job-wizard-left-area h1 {
-    color: #fff;
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 1.1;
-    padding-bottom: 20px;
+  /* Center the image */
+  .center-image {
+    margin: 0 auto;
+    display: block;
   }
 
-  .job-wizard-left-text {
-    padding: 0px 0px 127px;
+  /* Adjust text spacing for small screens */
+  .job-wizard-left-text h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
   }
 
-  .wizard-content-1 .job-wizard-left-area p {
-    font-size: 24px;
+  .job-wizard-left-text p {
+    font-size: 1rem;
   }
 
-  .wizard-content-1 .job-wizard-left-area .w-copyright{
-    font-size: 20px;
-  }
-
-  .actions li {
-    justify-content: center;
-    height: 45px;
-    width: 148px;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
+  /* Adjust the bottom copyright section */
+  .w-copyright {
+    font-size: 0.875rem;
     text-align: center;
-    line-height: 49px;
+    margin-top: 2rem;
   }
 }
 
 
-@media (max-width: 480px) {
-  .job-style-two-content {
-    display: block !important;
-  }
 
-  .job-wizard-left-area {
-    width: 100% !important;
-    padding: 50px 20px !important; /* Adjust padding for smaller screens */
-    text-align: center !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-
-  .wizard-content-1 .job-wizard-left-area h1 {
-    font-size: 28px !important;
-    font-weight: 500 !important;
-    line-height: 1.1 !important;
-    padding-bottom: 15px !important;
-  }
-
-  .wizard-content-1 .job-wizard-left-area p {
-    font-size: 17px !important;
-  }
-
-  .service-review li .service-review-img {
-    padding-top: 10px !important; /* Adjust padding for smaller screens */
-  }
-
-  .service-review li .service-review-text {
-    font-size: 14px !important; /* Adjust font size for smaller screens */
-    width: auto !important; /* Adjust width for smaller screens */
-    height: auto !important; /* Adjust height for smaller screens */
-  }
-
-  .wizard-content-1 .job-wizard-left-area .w-copyright {
-    font-size: 20px !important; /* Adjust font size for smaller screens */
-    bottom: 20px !important;
-    margin-top: 0px;
-    padding-top: 0px;
-  }
-
-  .survey-form-img img {
-    width: 90% !important;
-    padding: 0px 0px 50px !important;
-  }
-
-  .wizard-content-1 .job-wizard-right-area .jw-top-title h3 {
-    color: #232222;
-    font-size: 25px;
-    font-weight: 500;
-  }
-
-  .wizard-content-1 .job-wizard-right-area .jw-top-title span {
-    font-size: 15px;
-  }
-
-  .wizard-content-1 .job-wizard-right-area {
-    width: 100%;
-    padding: 20px 20px;
-  }
-
-  .service-review li {
-    margin-right: 30px;
-    margin-bottom: 40px;
-    justify-content: center;
-  }
-
-  .service-review {
-    padding-bottom: 30px;
-  }
-
-  .job-wizard-left-text {
-    padding: 0px 0px 70px;
-  }
-
-  .actions li {
-    justify-content: center;
-    height: 45px;
-    width: 148px;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: center;
-    line-height: 49px;
-  }
-
-  .rate-value.full-block-empty:before {
-    left: 0;
-    top: -15px;
-    font-size: 30px;
-    cursor: pointer;
-    content: "";
-    color: #D39931;
-    font-weight: 400;
-    font-family: "Font Awesome 5 Free";
-  }
-
-  .reccomend-selector li label {
-    width: 100%;
-    color: #121212;
-    font-size: 16px;
-    padding-left: 0px;
-    font-weight: 500;
-  }
-
-  .reccomend-selector li .checkmark-border:before {
-    content: "";
-    position: absolute;
-    height: 22px;
-    width: 21px;
-    border-radius: 100%;
-    left: 30px;
-    top: 18px;
-    background-color: #fff;
-    border: 2px solid #c4c4c4;
-  }
-  .reccomend-selector li .checkmark-border:after {
-    top: 23px;
-    left: 34px;
-    width: 13px;
-    content: "";
-    height: 13px;
-    display: none;
-    position: absolute;
-    border-radius: 100%;
-    background-color: #D39931;
-  }
-}
 /*---------------------------------------------------- */

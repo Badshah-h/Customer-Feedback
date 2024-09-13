@@ -1,74 +1,56 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import FormInput from '../../common/FormInput.js';
+import PropTypes from "prop-types";
+import {useSurveyContext} from "../context/SurveyContext.js";
 
-const ContactComponent = () => {
-    const { t } = useTranslation();
+const ContactComponent = ({ step }) => {
 
-    return (
+    const { handleInputChange, formValues } = useSurveyContext();
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        handleInputChange(step.stepNumber, name, value);
+    };
+
+        return (
         <div className="service-rating">
             <div className="details-form-area">
                 <div className="row">
                     <div className="col-lg-6">
                         <FormInput
-                            type="text"
-                            name="firstName"
-                            placeholder={t('contact.firstName')}
-                            icon="user"
-                            required
-                        />
-                    </div>
-                    <div className="col-lg-6">
-                        <FormInput
-                            type="text"
-                            name="lastName"
-                            placeholder={t('contact.lastName')}
-                            icon="user"
-                        />
-                    </div>
-                    <div className="col-lg-6">
-                        <FormInput
                             type="email"
                             name="email"
-                            placeholder={t('contact.email')}
+                            placeholder="Email"
                             icon="envelope"
                             required
-                        />
+                            onChange={handleChange}
+                            value={formValues[step.stepNumber]?.email || ''}
+                            />
                     </div>
                     <div className="col-lg-6">
                         <FormInput
                             type="text"
                             name="phone"
-                            placeholder={t('contact.phone')}
+                            placeholder="Phone"
                             icon="phone"
+                            onChange={handleChange}
+                            value={formValues[step.stepNumber]?.phone || ''}
                         />
-                    </div>
-                    <div className="age-gender-selector">
-                        <div className="form-input-inner position-relative d-inline-block">
-                            <FormInput
-                                type="text"
-                                name="age"
-                                placeholder={t('contact.age')}
-                                icon="user"
-                            />
-                        </div>
-                        <div className="gender-selector d-inline-block">
-                            <label>
-                                <input type="radio" name="gender" value="Male" className="gender-input" />
-                                <span className="check-circle"></span>
-                                <span className="checkmark">{t('contact.male')}</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="gender" value="Female" className="gender-input" />
-                                <span className="check-circle"></span>
-                                <span className="checkmark">{t('contact.female')}</span>
-                            </label>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     );
 };
+
+// Define PropTypes
+ContactComponent.propTypes = {
+    step: PropTypes.shape({
+        stepNumber: PropTypes.number.isRequired,
+        email: PropTypes.string,
+        phone: PropTypes.string,
+    }).isRequired,
+};
+
 
 export default ContactComponent;
