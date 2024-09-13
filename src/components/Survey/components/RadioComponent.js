@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import VeryBad from '../../../assets/emojis/sr1.png';
 import Bad from '../../../assets/emojis/sr2.png';
