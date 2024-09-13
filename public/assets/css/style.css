@@ -60,21 +60,21 @@ body {
 }
 
 .poll-thank-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; /* Adjust based on your needs */
-  text-align: center;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100vh !important; /* Adjust based on your needs */
+  text-align: center !important;
 }
 
 .thank-you-image {
-  max-width: 100%; /* Adjust as needed */
-  height: auto;
+  max-width: 100% !important; /* Adjust as needed */
+  height: auto !important;
 }
 
 .thank-you-text {
-  margin-top: 20px; /* Adjust as needed */
+  margin-top: 20px !important; /* Adjust as needed */
 }
 
 
@@ -156,12 +156,13 @@ body {
 /*  border-color: #b58e23;*/
 /*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
 /*}*/
-.service-review label.selected  .service-review-text{
-  background-color: #D39931;
-  color: #000000;
-  border-color: #b58e23;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.service-review label.selected .service-review-text {
+  background-color: #D39931 !important;
+  color: #000000 !important;
+  border-color: #b58e23 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
 }
+
 
 .service-review label:hover {
   background-color: #f9f9f9; /* Light background on hover */
