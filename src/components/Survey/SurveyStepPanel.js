@@ -29,7 +29,7 @@ const SurveyStepPanel = memo(({
     );
 
     return (
-        <div className="wizard-content-1 clearfix">
+        <>
             <div className="steps-container">
                 <ul className="steps-list">
                     {Array.from({ length: totalSteps }, (_, index) => (
@@ -43,18 +43,8 @@ const SurveyStepPanel = memo(({
                 </ul>
             </div>
 
-            <div className="steps d-inline-block position-absolute clearfix">
-                <ul className="tablist multisteps-form__progress">
-                    <li className="multisteps-form__progress-btn js-active"></li>
-                    <li className="multisteps-form__progress-btn js-active"></li>
-                    <li className="multisteps-form__progress-btn js-active current"></li>
-                </ul>
-            </div>
-
-            <div className="step-inner-content">
-                <form className="wizard-form" onSubmit={onSubmit} noValidate>
+            <form  onSubmit={onSubmit} noValidate>
                     <div className={`form-panel ${currentStep ? 'active' : ''}`}>
-                        <div className="form-content">
                             <div className="job-style-content">
                                 <SurveySidebar
                                     title={title}
@@ -81,11 +71,9 @@ const SurveyStepPanel = memo(({
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </form>
-            </div>
-        </div>
+        </>
     );
 });
 

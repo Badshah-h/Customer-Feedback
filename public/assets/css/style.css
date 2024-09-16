@@ -33,31 +33,143 @@ body {
   padding: 0;
   font-family: "Jost", sans-serif;
   box-sizing: border-box;
-  height: 100vh; /* Full viewport height */
-  overflow: hidden; /* Prevent scrollbars */
+  height: 100%;
+  overflow: hidden; /* Disable scrolling */
 }
 
-/* Wrapper */
 .wrapper {
-  width: 100%;
-  height: 100vh; /* Full viewport height */
-  background-color: #ffffff; /* White background for the full page */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0; /* Remove padding */
+  flex-direction: column; /* Stack steps and form vertically */
+  justify-content: flex-start;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  box-sizing: border-box;
+  overflow: auto; /* Prevent scrolling */
 }
 
-/* Main content area */
-.wizard-content-1 {
+/* Ensure the steps container takes minimal space at the top */
+.steps-container {
   width: 100%;
-  height: 100%; /* Full height of the wrapper */
-  background-color: rgba(211, 153, 49, 0.5); /* Accent color with 50% opacity */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-  display: flex;
-  flex-direction: column;
-  overflow: auto; /* Allow scrolling if content overflows */
+  text-align: center;
+  background-color: #f8f8f8; /* Optional styling */
 }
+
+.form-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.steps-container {
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.form-panel {
+  flex: 1; /* Allow to grow and take available space */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+
+.job-style-content {
+  display: flex;
+  flex-direction: row; /* Layout children in a row */
+  width: 100%;
+  margin: 0 auto; /* Center content horizontally */
+  box-sizing: border-box;
+  height: 100vh;
+
+}
+
+/* Adjustments for .job-style-content on screens 1024px and below */
+@media (max-width: 1024px) {
+  .job-style-content {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+
+
+
+
+
+
+/* Flex items (labels) */
+.service-review label {
+  flex: 1 1 calc(50% - 15px) !important; /* Default to 2 items per row, considering gap */
+  box-sizing: border-box !important; /* Include padding and border in element’s total width and height */
+  display: flex !important;
+  align-items: center !important; /* Center content vertically */
+  justify-content: center !important; /* Center content horizontally */
+  padding: 10px !important; /* Add padding if needed */
+  max-width: calc(50% - 15px) !important; /* Ensure max width is calculated correctly */
+  /* Optional: adjust height if needed */
+}
+
+/* Responsive adjustments for large screens */
+@media (min-width: 1200px) {
+  .service-review label {
+    flex: 1 1 calc(25% - 15px) !important; /* 4 per row on extra-large screens */
+    max-width: calc(25% - 15px) !important; /* Ensure max width is calculated correctly */
+  }
+}
+
+/* Styles for medium screens */
+@media (max-width: 1024px) {
+  .service-review label {
+    flex: 1 1 calc(33.33% - 15px) !important; /* 3 per row on medium screens */
+    max-width: calc(33.33% - 15px) !important; /* Ensure max width is calculated correctly */
+  }
+}
+
+/* Styles for small screens */
+@media (max-width: 768px) {
+  .service-review label {
+    flex: 1 1 calc(50% - 15px) !important; /* 2 per row on small screens */
+    max-width: calc(50% - 15px) !important; /* Ensure max width is calculated correctly */
+  }
+}
+
+/* Styles for extra small screens */
+@media (max-width: 576px) {
+  .service-review label {
+    flex: 1 1 calc(50% - 15px) !important; /* 2 per row on extra small screens */
+    max-width: calc(50% - 15px) !important; /* Ensure max width is calculated correctly */
+  }
+}
+
+/* Styles for very small screens */
+@media (max-width: 320px) {
+  .service-review label {
+    flex: 1 1 100% !important; /* 1 per row on very small screens */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .poll-thank-text {
   display: flex !important;
@@ -78,18 +190,6 @@ body {
 }
 
 
-/* Full width for the form container */
-.step-inner-content {
-  width: 100%;
-}
-
-/* Job Style Content Layout */
-.job-style-content {
-  display: flex;
-  align-items: stretch; /* Ensures both sides stretch to the same height */
-  height: 100%; /* Full height for the container */
-  box-sizing: border-box;
-}
 
 /* Left and Right Survey Area */
 .survey-left-area,
@@ -102,6 +202,8 @@ body {
   justify-content: space-between;
   /*border-radius: 15px;*/
   /*height: 100vh;*/
+  height: 100%;
+  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -130,6 +232,7 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 4rem;
+  padding: 0 15px !important;
 }
 /* Style for individual labels in the review section */
 
@@ -178,7 +281,7 @@ body {
 
 
 .service-review-img img {
-  max-width: 90px;
+  max-width: 100px;
   margin-bottom: 1rem;
   object-fit: contain;
   border-radius: 50%;
@@ -406,16 +509,15 @@ body.ltr .language-icon {
 
 
 
-/* Steps Container */
+/* Container Styling */
 .steps-container {
   border-bottom: 2px solid #D39931;
-  width: 100%;
-  display: flex;
-  justify-content: center;
   background: linear-gradient(135deg, #D39931 0%, #ffffff 100%);
+  text-align: center;
+  overflow: hidden; /* Prevent overflow issues */
 }
 
-/* Reset counter for step numbers */
+/* Steps List Styling */
 .steps-list {
   counter-reset: step-counter;
   display: flex;
@@ -425,9 +527,10 @@ body.ltr .language-icon {
   color: #ffffff;
   box-sizing: border-box;
   position: relative;
+  overflow: hidden; /* Prevent overflow issues */
 }
 
-/* Individual Steps */
+/* Steps Item Styling */
 .steps-item {
   flex: 1;
   position: relative;
@@ -440,15 +543,17 @@ body.ltr .language-icon {
   font-weight: bold;
   color: #333;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  overflow: hidden; /* Prevent overflow issues */
 }
 
-/* Active Step */
+/* Active Step Styling */
 .steps-item.active {
   color: #D39931;
   transform: scale(1.1); /* Slightly enlarge the active step */
+  z-index: 1; /* Ensure it is on top */
 }
 
-/* Step Number or Check Mark for Completed Steps */
+/* Step Number Circle Styling */
 .steps-item::before {
   content: counter(step-counter);
   counter-increment: step-counter;
@@ -468,7 +573,7 @@ body.ltr .language-icon {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Checkmark */
+/* Checkmark Styling */
 .checkmark {
   display: flex;
   align-items: center;
@@ -486,12 +591,11 @@ body.ltr .language-icon {
   display: none; /* Hide by default */
 }
 
-/* Show checkmark for completed steps */
 .steps-item.completed .checkmark {
   display: flex;
 }
 
-/* Optional - Step Connector */
+/* Step Connector Styling */
 .steps-item:not(:last-child)::after {
   content: '';
   position: absolute;
@@ -504,16 +608,15 @@ body.ltr .language-icon {
   transition: background-color 0.3s ease;
 }
 
-/* Active step number inside the circle */
+/* Active Step Number Circle */
 .steps-item.active::before {
   background-color: #000000;
   color: #fff;
 }
 
-
-/* Progress Bar */
+/* Active Connector */
 .steps-item.active + .steps-item::after {
-  background-color: #D39931; /* active connector */
+  background-color: #D39931; /* Active connector */
 }
 
 
@@ -1260,25 +1363,7 @@ h6 {
 
 /* Default styles for very large screens (4K) */
 @media screen and (min-width: 2560px) {
-  body {
-    font-size: 18px !important; /* Larger base font size for readability on large screens */
-  }
 
-  h1 {
-    font-size: 3rem !important; /* Large heading for big screens */
-  }
-
-  h2 {
-    font-size: 2.5rem !important;
-  }
-
-  h3 {
-    font-size: 2rem !important;
-  }
-
-  p {
-    font-size: 1.25rem !important; /* Larger paragraph text */
-  }
 
   .container {
     padding: 40px !important; /* Generous padding for large screens */
@@ -1305,25 +1390,7 @@ h6 {
 
 /* Media query for viewport widths around 1920px */
 @media screen and (max-width: 1920px) {
-  body {
-    font-size: 16px !important;
-  }
 
-  h1 {
-    font-size: 2.5rem !important;
-  }
-
-  h2 {
-    font-size: 2rem !important;
-  }
-
-  h3 {
-    font-size: 1.75rem !important;
-  }
-
-  p {
-    font-size: 1.15rem !important;
-  }
 
   .container {
     padding: 30px !important;
@@ -1348,25 +1415,7 @@ h6 {
 
 /* Media query for viewport widths around 1440px */
 @media screen and (max-width: 1440px) {
-  body {
-    font-size: 15px !important;
-  }
 
-  h1 {
-    font-size: 2rem !important;
-  }
-
-  h2 {
-    font-size: 1.75rem !important;
-  }
-
-  h3 {
-    font-size: 1.5rem !important;
-  }
-
-  p {
-    font-size: 1rem !important;
-  }
 
   .container {
     padding: 20px !important;
@@ -1391,25 +1440,6 @@ h6 {
 
 /* Media query for viewport widths around 1280px */
 @media screen and (max-width: 1280px) {
-  body {
-    font-size: 14px !important;
-  }
-
-  h1 {
-    font-size: 1.75rem !important;
-  }
-
-  h2 {
-    font-size: 1.5rem !important;
-  }
-
-  h3 {
-    font-size: 1.25rem !important;
-  }
-
-  p {
-    font-size: 0.9rem !important;
-  }
 
   .container {
     padding: 15px !important;
@@ -1434,25 +1464,7 @@ h6 {
 
 /* Media query for viewport widths around 1199px */
 @media screen and (max-width: 1199px) {
-  body {
-    font-size: 13px !important;
-  }
 
-  h1 {
-    font-size: 1.5rem !important;
-  }
-
-  h2 {
-    font-size: 1.25rem !important;
-  }
-
-  h3 {
-    font-size: 1.15rem !important;
-  }
-
-  p {
-    font-size: 0.85rem !important;
-  }
 
   .container {
     padding: 10px !important;
@@ -1477,25 +1489,7 @@ h6 {
 
 /* Media query for viewport widths around 991px */
 @media screen and (max-width: 991px) {
-  body {
-    font-size: 12px !important;
-  }
 
-  h1 {
-    font-size: 1.25rem !important;
-  }
-
-  h2 {
-    font-size: 1rem !important;
-  }
-
-  h3 {
-    font-size: 0.9rem !important;
-  }
-
-  p {
-    font-size: 0.75rem !important;
-  }
 
   .container {
     padding: 8px !important;
@@ -1520,25 +1514,7 @@ h6 {
 
 /* Media query for viewport widths around 767px */
 @media screen and (max-width: 767px) {
-  body {
-    font-size: 11px !important;
-  }
 
-  h1 {
-    font-size: 1rem !important;
-  }
-
-  h2 {
-    font-size: 0.875rem !important;
-  }
-
-  h3 {
-    font-size: 0.75rem !important;
-  }
-
-  p {
-    font-size: 0.7rem !important;
-  }
 
   .container {
     padding: 5px !important;
@@ -1563,25 +1539,7 @@ h6 {
 
 /* Media query for viewport widths around 580px */
 @media screen and (max-width: 580px) {
-  body {
-    font-size: 10px !important;
-  }
 
-  h1 {
-    font-size: 0.9rem !important;
-  }
-
-  h2 {
-    font-size: 0.75rem !important;
-  }
-
-  h3 {
-    font-size: 0.65rem !important;
-  }
-
-  p {
-    font-size: 0.6rem !important;
-  }
 
   .container {
     padding: 5px !important;
@@ -1606,25 +1564,7 @@ h6 {
 
 /* Media query for viewport widths around 480px */
 @media screen and (max-width: 480px) {
-  body {
-    font-size: 9px !important;
-  }
 
-  h1 {
-    font-size: 0.75rem !important;
-  }
-
-  h2 {
-    font-size: 0.65rem !important;
-  }
-
-  h3 {
-    font-size: 0.55rem !important;
-  }
-
-  p {
-    font-size: 0.5rem !important;
-  }
 
   .container {
     padding: 3px !important;
@@ -1699,13 +1639,6 @@ h6 {
     margin-bottom: 30px; /* Increased margin for more spacing */
   }
 
-  .jw-top-title span {
-    font-size: 1.2rem; /* Larger font size */
-  }
-
-  .jw-top-title h2 {
-    font-size: 2.5rem; /* Larger font size */
-  }
 
   .language-switcher {
     margin-bottom: 30px; /* Increased margin */
@@ -1727,13 +1660,6 @@ h6 {
     margin-bottom: 25px; /* Moderate margin */
   }
 
-  .jw-top-title span {
-    font-size: 1.1rem; /* Slightly larger font size */
-  }
-
-  .jw-top-title h2 {
-    font-size: 2.2rem; /* Slightly larger font size */
-  }
 
   .language-switcher {
     margin-bottom: 25px; /* Moderate margin */
@@ -1755,13 +1681,6 @@ h6 {
     margin-bottom: 20px; /* Standard margin */
   }
 
-  .jw-top-title span {
-    font-size: 1rem; /* Standard font size */
-  }
-
-  .jw-top-title h2 {
-    font-size: 2rem; /* Standard font size */
-  }
 
   .language-switcher {
     margin-bottom: 20px; /* Standard margin */
@@ -1788,13 +1707,6 @@ h6 {
     margin-bottom: 10px; /* Reduced margin */
   }
 
-  .jw-top-title span {
-    font-size: 0.9rem; /* Smaller font size */
-  }
-
-  .jw-top-title h2 {
-    font-size: 1.8rem; /* Smaller font size */
-  }
 
   .language-switcher {
     margin-bottom: 15px; /* Reduced margin */
@@ -1821,13 +1733,7 @@ h6 {
     text-align: center; /* Center align text */
   }
 
-  .jw-top-title span {
-    font-size: 0.8rem; /* Smaller font size */
-  }
 
-  .jw-top-title h2 {
-    font-size: 1.5rem; /* Smaller font size */
-  }
 
   .language-switcher {
     margin-bottom: 10px; /* Reduced margin */
@@ -1858,13 +1764,7 @@ h6 {
     margin-right: 10px; /* Space between title and language switcher */
   }
 
-  .jw-top-title span {
-    font-size: 0.7rem; /* Smaller font size */
-  }
 
-  .jw-top-title h2 {
-    font-size: 1.2rem; /* Smaller font size */
-  }
 
   .language-switcher {
     margin: 0; /* Remove bottom margin */
@@ -1965,7 +1865,6 @@ h6 {
 /* Extra Small Screens (XS) */
 @media (max-width: 320px) {
   .service-review {
-    flex-direction: column;
     align-items: center;
   }
 
@@ -1976,21 +1875,14 @@ h6 {
     font-size: 0.9rem;
   }
 
-  .service-review-img img {
-    max-width: 60px;
-  }
 
-  .service-review-text {
-    font-size: 13px;
-    line-height: 26px;
-    height: 26px;
-  }
+
+
 }
 
 /* Small Screens (SM) */
 @media (min-width: 321px) and (max-width: 480px) {
   .service-review {
-    flex-direction: column;
     align-items: center;
   }
 
@@ -2001,21 +1893,13 @@ h6 {
     font-size: 1rem;
   }
 
-  .service-review-img img {
-    max-width: 70px;
-  }
 
-  .service-review-text {
-    font-size: 14px;
-    line-height: 28px;
-    height: 28px;
-  }
+
 }
 
 /* Medium Screens (MD) */
 @media (min-width: 481px) and (max-width: 768px) {
   .service-review {
-    flex-direction: row;
     justify-content: center;
   }
 
@@ -2025,21 +1909,14 @@ h6 {
     font-size: 1rem;
   }
 
-  .service-review-img img {
-    max-width: 80px;
-  }
 
-  .service-review-text {
-    font-size: 15px;
-    line-height: 30px;
-    height: 30px;
-  }
+
+
 }
 
 /* Large Screens (LG) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .service-review {
-    flex-direction: row;
     justify-content: space-between;
   }
 
@@ -2049,21 +1926,14 @@ h6 {
     font-size: 1.1rem;
   }
 
-  .service-review-img img {
-    max-width: 85px;
-  }
 
-  .service-review-text {
-    font-size: 16px;
-    line-height: 32px;
-    height: 32px;
-  }
+
+
 }
 
 /* Extra Large Screens (XL) */
 @media (min-width: 1025px) {
   .service-review {
-    flex-direction: row;
     justify-content: space-between;
   }
 
@@ -2073,23 +1943,15 @@ h6 {
     font-size: 1.1rem;
   }
 
-  .service-review-img img {
-    max-width: 90px;
-  }
 
-  .service-review-text {
-    font-size: 17px;
-    line-height: 34px;
-    height: 34px;
-  }
+
 }
 
 /* Extra Large Screens (4K) */
 @media (min-width: 2560px) {
   .service-review {
-    flex-direction: row;
     justify-content: space-between;
-    gap: 2rem; /* Increased gap for better spacing */
+    gap: 2rem;
   }
 
   .service-review label {
@@ -2102,11 +1964,6 @@ h6 {
     max-width: 100px; /* Slightly larger image size */
   }
 
-  .service-review-text {
-    font-size: 18px; /* Larger font size for readability */
-    line-height: 36px; /* Increased line height */
-    height: 36px; /* Adjust height for larger text */
-  }
 }
 
 
@@ -2159,9 +2016,6 @@ h6 {
     padding: 5px;
   }
 
-  .survey-header {
-    font-size: 0.8rem; /* Adjust font size for smaller screens */
-  }
 
   .language-switcher {
     margin-bottom: 20px; /* Space below language switcher */
@@ -2183,19 +2037,14 @@ h6 {
 }
 
 @media screen and (max-width: 480px) {
-  .survey-header {
-    font-size: 0.7rem; /* Smaller font size */
-  }
+
 
   .language-switcher {
     font-size: 0.7rem; /* Smaller font size */
     margin-bottom: 30px; /* Minimal margin */
   }
 
-  .service-review img {
-    width: 50px; /* Adjust image size */
-    height: auto;
-  }
+
 
   .service-review label {
     margin-bottom: 20px; /* Space between items */
@@ -2220,52 +2069,9 @@ h6 {
 
 /*left side*//* Responsive Styles */
 
-/* Extra Small Screens (up to 479px) */
-@media screen and (max-width: 479px) {
 
-  .card .job-wizard-left-text h1 {
-    font-size: 1.5rem !important; /* Reduce font size */
-  }
 
-  .card .job-wizard-left-text p {
-    font-size: 0.9rem !important; /* Reduce font size */
-  }
 
-  .card .w-copyright {
-    font-size: 0.7rem !important; /* Reduce font size */
-  }
-}
-
-/* Small Screens (480px to 767px) */
-@media screen and (min-width: 480px) and (max-width: 767px) {
-
-  .card .job-wizard-left-text h1 {
-    font-size: 2rem !important; /* Adjust font size */
-  }
-
-  .card .job-wizard-left-text p {
-    font-size: 1rem !important; /* Adjust font size */
-  }
-
-  .card .w-copyright {
-    font-size: 0.9rem !important; /* Adjust font size */
-  }
-}
-
-/* Medium Screens (768px to 1023px) */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .card .job-wizard-left-text h1 {
-    font-size: 2.5rem !important; /* Increase font size */
-  }
-
-  .card .job-wizard-left-text p {
-    font-size: 1.2rem !important; /* Increase font size */
-  }
-
-  .card .w-copyright {
-    font-size: 1.1rem; /* Increase font size */
-  }
-}
 
 /* Large Screens (1024px to 1439px) */
 @media screen and (min-width: 1024px) and (max-width: 1439px) {
@@ -2274,17 +2080,7 @@ h6 {
     width: 50%; /* Default image size for large desktops */
   }
 
-  .card .job-wizard-left-text h1 {
-    font-size: 2.6rem !important; /* Increase font size */
-  }
 
-  .card .job-wizard-left-text p {
-    font-size: 1.0rem !important; /* Increase font size */
-  }
-
-  .card .w-copyright {
-    font-size: 1.3rem !important; /* Increase font size */
-  }
 }
 
 /* Extra Large Screens (1440px and up) */
@@ -2298,17 +2094,7 @@ h6 {
     margin-top: 6rem; /* Increased space between the image and language switcher */
   }
 
-  .card .job-wizard-left-text h1 {
-    font-size: 3rem !important; /* Increase font size */
-  }
 
-  .card .job-wizard-left-text p {
-    font-size: 1.6rem !important; /* Increase font size */
-  }
-
-  .card .w-copyright {
-    font-size: 1.4rem !important; /* Increase font size */
-  }
 }
 
 
@@ -2318,21 +2104,12 @@ h6 {
     width: 90%; /* Increase image width to 80% */
   }
 
-  .card .job-wizard-left-text h1 {
-    font-size: 2rem; /* Smaller font for headers */
-  }
 
   .survey-form-img {
     margin-top: 6rem; /* Increased space between the image and language switcher */
   }
 
-  .card .job-wizard-left-text p {
-    font-size: 1rem; /* Adjust paragraph font size */
-  }
 
-  .card .w-copyright {
-    font-size: 0.8rem;
-  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px - 768px) */
@@ -2345,13 +2122,6 @@ h6 {
     margin-top: 6rem; /* Increased space between the image and language switcher */
   }
 
-  .card .job-wizard-left-text h1 {
-    font-size: 2.5rem;
-  }
-
-  .card .job-wizard-left-text p {
-    font-size: 1.1rem;
-  }
 }
 
 /* Medium devices (landscape tablets, 768px - 1024px) */
@@ -2362,13 +2132,7 @@ h6 {
   .survey-form-img {
     margin-top: 6rem; /* Increased space between the image and language switcher */
   }
-  .card .job-wizard-left-text h1 {
-    font-size: 3rem;
-  }
 
-  .card .job-wizard-left-text p {
-    font-size: 1.2rem;
-  }
 }
 
 /* Large devices (desktops, 1024px - 1200px) */
@@ -2380,13 +2144,6 @@ h6 {
     margin-top: 6rem; /* Increased space between the image and language switcher */
   }
 
-  .card .job-wizard-left-text h1 {
-    font-size: 3rem;
-  }
-
-  .card .job-wizard-left-text p {
-    font-size: 1.3rem;
-  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -2399,13 +2156,7 @@ h6 {
     width: 60%; /* Default image size for large desktops */
   }
 
-  .card .job-wizard-left-text h1 {
-    font-size: 3rem;
-  }
 
-  .card .job-wizard-left-text p {
-    font-size: 1.4rem;
-  }
 }
 
 /* General adjustments for small screens */
@@ -2437,17 +2188,12 @@ h6 {
 
   /* Adjust text spacing for small screens */
   .job-wizard-left-text h1 {
-    font-size: 2rem;
     margin-bottom: 0.5rem;
   }
 
-  .job-wizard-left-text p {
-    font-size: 1rem;
-  }
 
   /* Adjust the bottom copyright section */
   .w-copyright {
-    font-size: 0.875rem;
     text-align: center;
     margin-top: 2rem;
   }
