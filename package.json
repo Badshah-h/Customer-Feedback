@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "homepage": "customerFeedback/build",
   "dependencies": {
     "@eslint/config-array": "^0.18.0",
     "@react-buddy/ide-toolbox": "^2.4.0",
