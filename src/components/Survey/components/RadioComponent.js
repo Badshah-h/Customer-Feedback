@@ -21,9 +21,11 @@ const RadioComponent = ({ step }) => {
             const translatedImgSrc = translatedOption?.image_path;
             const imgSrc = translatedImgSrc ? `${CONFIG.IMG_BASE_URL}${translatedImgSrc}` : null;
             const translatedOptionText = translatedOption?.option_text;
-            const handleChange = (event) => {
+            const handleChange = useCallback((event) => {
                 handleInputChange(step.step_number, 'radio', Number(event.target.value));
-            };            return (
+            }, [handleInputChange, step.step_number]);
+
+            return (
                 <label key={option.id}
                        className={selectedOption === option.id ? 'selected' : ''}
                 >

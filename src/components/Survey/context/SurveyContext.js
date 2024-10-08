@@ -103,7 +103,7 @@ export const SurveyProvider = ({ children }) => {
         setIsSubmitted,
         resetForm,
         getContactDataForStep,
-    }), [formValues, currentStep, handleInputChange, isSubmitted, resetForm]);
+    }), [formValues, currentStep, isSubmitted, resetForm]);
 
     return (
         <SurveyContext.Provider value={contextValue}>
