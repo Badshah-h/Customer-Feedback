@@ -1,89 +1,109 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
-import { submitSurveyData } from '../../../services/dataService.js'; // Import your data service
+import { createContext, useState, useMemo, useContext, useEffect, useCallback} from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { QUESTION_TYPES } from '../../../utils/constants.js';
+import {useTranslation} from "react-i18next";
 
-const SurveyContext = createContext({
-    formValues: {},
-    currentStep: 1,
-    setCurrentStep: () => {},
-    handleOptionChange: () => {},
-    handleInputChange: () => {},
-    handleStarClick: () => {},
-    handleTextareaChange: () => {},
-    handleSubmit: () => {},
-});
+const SurveyContext = createContext();
 
 export const SurveyProvider = ({ children }) => {
-    const [formValues, setFormValues] = useState({});
+    const [formValues, setFormValues] = useState({
+        survey: {
+            survey_id: uuidv4(),
+            questions: {},
+            locale: null,
+        },
+    });
     const [currentStep, setCurrentStep] = useState(1);
-    const [isSubmitted, setIsSubmitted] = useState(false); // Track submission status
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const { i18n } = useTranslation();
+    const locale = i18n.language;
 
-    // Generic handler for changing form values
-    const handleOptionChange = useCallback((stepNumber, name, value) => {
-        setFormValues(prevValues => ({
+    // Reset form on load
+    const resetForm = useCallback(() => {
+        setFormValues({
+            survey: {
+                survey_id: uuidv4(),
+                questions: {},
+                locale,
+            },
+        });
+        setCurrentStep(1);
+        setIsSubmitted(false);
+    }, [locale]);
+    useEffect(() => {
+        resetForm();
+    }, [resetForm]); 
+
+    const updateAnswer = (stepNumber, answerType, value) => {
+        setFormValues((prevValues) => ({
             ...prevValues,
-            [stepNumber]: {
-                ...prevValues[stepNumber],
-                [name]: value
-            }
+            survey: {
+                ...prevValues.survey,
+                questions: {
+                    ...prevValues.survey.questions,
+                    [`question_${stepNumber}`]: {
+                        answer: {
+                            ...prevValues.survey.questions[`question_${stepNumber}`]?.answer,
+                            [answerType]: value,  
+                        },
+                    },
+                },
+            },
         }));
-    }, []);
+    };
 
-    // Handlers for specific types of form input
-    const handleInputChange = useCallback((stepNumber, name, value) => {
-        handleOptionChange(stepNumber, name, value);
-    }, [handleOptionChange]);
-
-    const handleStarClick = useCallback((stepNumber, rating) => {
-        handleOptionChange(stepNumber, 'rating', rating);
-    }, [handleOptionChange]);
-
-    const handleTextareaChange = useCallback((stepNumber, value) => {
-        handleOptionChange(stepNumber, 'textarea', value);
-    }, [handleOptionChange]);
-
-    const handleRadioChange = useCallback((stepNumber, value) => {
-        handleOptionChange(stepNumber, 'radio', value);
-    }, [handleOptionChange]);
-
-
-    // Handle form submission
-    const handleSubmit = useCallback(async (event) => {
-        event.preventDefault();
-
-        const dataToSave = {
-            timestamp: new Date(),
-            formValues,
-        };
-
-        try {
-            await submitSurveyData(dataToSave);
-            console.log("Form submitted successfully:", dataToSave);
-            setIsSubmitted(true);
-
-            // Reload the app after 10 seconds, but only if the submission was successful
-            setTimeout(() => {
-                setIsSubmitted(false);
-                window.location.reload();
-            }, 10000);
-        } catch (error) {
-            console.error("Error submitting form:", error);
+    const handleInputChange = (stepNumber, inputType, value) => {
+        switch (inputType) {
+            case QUESTION_TYPES.CONTACT: {
+                // Update contact information
+                setFormValues((prevValues) => ({
+                    ...prevValues,
+                    survey: {
+                        ...prevValues.survey,
+                        questions: {
+                            ...prevValues.survey.questions,
+                            [`question_${stepNumber}`]: {
+                                answer: {
+                                    ...prevValues.survey.questions[`question_${stepNumber}`]?.answer,
+                                    contact: {
+                                        ...prevValues.survey.questions[`question_${stepNumber}`]?.answer?.contact,
+                                        ...value // Spread the new contact data
+                                    },
+                                },
+                            },
+                        },
+                    },
+                }));
+                break;
+            }
+            case QUESTION_TYPES.RATING:
+                updateAnswer(stepNumber, 'rating', value);
+                break;
+            case QUESTION_TYPES.RADIO:
+                updateAnswer(stepNumber, 'radio', value);
+                break;
+            case 'textarea':
+                updateAnswer(stepNumber, 'textarea', value);
+                break;
+            default:
+                break;
         }
-    }, [formValues]);
+    };
+    // Submission logic
+    const getContactDataForStep = (stepNumber) => {
+        return formValues.survey.questions[`question_${stepNumber}`]?.answer?.contact || {};
+    };
 
-
-    // Context value
-    const contextValue = {
+    const contextValue = useMemo(() => ({
         formValues,
         currentStep,
         setCurrentStep,
-        handleOptionChange,
         handleInputChange,
-        handleStarClick,
-        handleTextareaChange,
-        handleRadioChange,
-        handleSubmit,
-        isSubmitted,  // Include isSubmitted in context if needed elsewhere
-    };
+        isSubmitted,
+        setIsSubmitted,
+        resetForm,
+        getContactDataForStep,
+    }), [formValues, currentStep, handleInputChange, isSubmitted, resetForm]);
 
     return (
         <SurveyContext.Provider value={contextValue}>
@@ -92,4 +112,6 @@ export const SurveyProvider = ({ children }) => {
     );
 };
 
-export const useSurveyContext = () => useContext(SurveyContext);
+export const useSurveyContext = () => {
+    return useContext(SurveyContext);
+};

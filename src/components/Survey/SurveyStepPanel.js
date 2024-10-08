@@ -1,79 +1,54 @@
-import React, { memo } from 'react';
+/* eslint-disable react/display-name */
 import PropTypes from 'prop-types';
-import SurveySidebar from './components/SurveySidebar.js';
-import NavigationControls from './components/NavigationControls.js';
 import {useSurveyContext} from "./context/SurveyContext.js";
+import SurveySidebar from "./components/SurveySidebar.js";
 import ThankYouComponent from "./components/ThankYou.js";
+import NavigationControls from "./components/NavigationControls.js";
+import useSubmitSurvey from "../../hooks/useSubmitSurvey.js";
+import React, { memo, useEffect } from 'react';
 
-
-
-const SurveyStepPanel = memo(({
-                                  currentStep,
-                                  totalSteps,
-                                  handlePrevStep,
-                                  handleNextStep,
-                                  handleStarClick,
-                                  title,
-                                  description,
-                                  onSubmit,
-                                  children,
-                              }) => {
-     const { handleOptionChange, isSubmitted } = useSurveyContext();
-    // Clone children and pass necessary props
-    const clonedChildren = React.Children.map(children, (child) =>
-        React.cloneElement(child, {
-            currentStep,
-            onOptionChange: handleOptionChange,
-            handleStarClick: handleStarClick,
-        })
-    );
-
+const SurveyStepPanel = memo(function ({
+    currentStep, totalSteps, handlePrevStep, handleNextStep, title, description, children,
+}) {
+    const { isSubmitted } = useSurveyContext();
+    const { handleSubmit, submitting, submissionError } = useSubmitSurvey();
+    console.log('isSubmitted:', isSubmitted);
+    useEffect(() => {
+        console.log('isSubmitted changed:', isSubmitted);
+        // You can add any logic here that needs to happen 
+        // when isSubmitted changes, like closing a modal, etc.
+    }, [isSubmitted]);
     return (
-        <>
-            <div className="steps-container">
-                <ul className="steps-list">
-                    {Array.from({ length: totalSteps }, (_, index) => (
-                        <li
-                            key={index}
-                            className={`steps-item ${currentStep > index + 1 ? 'completed' : ''} ${currentStep === index + 1 ? 'active' : ''}`}
-                        >
-                            <div className="checkmark">&#10003;</div>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+        <form onSubmit={handleSubmit} noValidate>
+            <div className={`form-panel ${currentStep ? 'active' : ''}`}>
+                <div className="job-style-content">
+                    <SurveySidebar
+                        title={title}
+                        description={description}
+                        currentStep={currentStep}
+                        totalSteps={totalSteps} />
+                    <div className="survey-right-area">
+                        <div className="survey-content">
+                            {isSubmitted ? (
+                                <ThankYouComponent />
+                            ) : (
+                                <>
+                                    {children}
+                                    <NavigationControls
+                                        currentStep={currentStep}
+                                        totalSteps={totalSteps}
+                                        onPrev={handlePrevStep}
+                                        onNext={handleNextStep} />
 
-            <form  onSubmit={onSubmit} noValidate>
-                    <div className={`form-panel ${currentStep ? 'active' : ''}`}>
-                            <div className="job-style-content">
-                                <SurveySidebar
-                                    title={title}
-                                    description={description}
-                                    currentStep={currentStep}
-                                    totalSteps={totalSteps}
-                                />
-                                <div className="survey-right-area">
-                                    <div className="survey-content">
-                                        {isSubmitted ? (
-                                            <ThankYouComponent />
-                                        ) : (
-                                            <>
-                                                {clonedChildren}
-                                                <NavigationControls
-                                                    currentStep={currentStep}
-                                                    totalSteps={totalSteps}
-                                                    onPrev={handlePrevStep}
-                                                    onNext={handleNextStep}
-                                                />
-                                            </>
-                                        )}
-
-                                    </div>
-                                </div>
-                            </div>
+                                    {submitting && <p>Submitting...</p>}
+                                    {submissionError && <p className="error-message">{submissionError.message}</p>}
+                                </>
+                            )}
+                        </div>
                     </div>
-                </form>
-        </>
+                </div>
+            </div>
+        </form>
     );
 });
 
@@ -84,8 +59,7 @@ SurveyStepPanel.propTypes = {
     handleNextStep: PropTypes.func.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
-    onSubmit: PropTypes.func.isRequired,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
 };
 
 

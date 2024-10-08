@@ -19,6 +19,11 @@ return new class extends Migration
         $table->unsignedBigInteger('created_by');
         $table->foreign('created_by')->references('id')->on('users');
         $table->timestamps();
+
+
+        $table->index('step_number');
+        $table->index('type');
+        $table->index('created_by');
       });
     }
 

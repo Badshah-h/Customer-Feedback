@@ -21,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/questions', [App\Http\Controllers\Api\QuestionApiController::class, 'getApiQuestions']);
+
+
+Route::post('/submit-survey', [\App\Http\Controllers\Api\AnswerController::class, 'submit']);

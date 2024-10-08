@@ -1,26 +1,40 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import PropTypes from 'prop-types';
-import { STARS } from '../../../utils/constants.js';
+import {QUESTION_TYPES, STARS} from '../../../utils/constants.js';
 import {useSurveyContext} from "../context/SurveyContext.js"; // Assuming you have predefined constants
 
 const RatingComponent = ({ step }) => {
+    const { formValues, handleInputChange } = useSurveyContext();
 
-    const { formValues, handleStarClick } = useSurveyContext();
-    const selectedRating = formValues[step.stepNumber]?.rating || 0;
+    const selectedRating = useMemo(() =>
+            formValues.survey.questions[`question_${step.step_number}`]?.answer?.rating || 1,
+        [formValues, step.step_number]
+    );
+
+    const handleStarClick = (rating) => {
+        handleInputChange(step.step_number, QUESTION_TYPES.RATING, rating);
+    };
+
+     const renderStar = useMemo(() => (star) => (
+        <span
+            key={star}
+            className={`rate-value ${star <= selectedRating ? 'full-block' : 'full-block-empty'}`}
+            style={{ cursor: 'pointer', fontSize: '2rem' }}
+        >
+        </span>
+    ), [selectedRating]);
 
     return (
         <div className="service-rating" style={{ textAlign: 'center' }}>
-            <div className="survey-ratting clearfix position-relative">
+            <div className="survey-rating clearfix position-relative">
                 <div id="stars" className="starrr">
                     {STARS.map((star) => (
-
-                    <span
-                        key={star}
-                        className={`rate-value ${star <= selectedRating ? 'full-block' : 'full-block-empty'}`}
-                        style={{ cursor: 'pointer', fontSize: '2rem' }}
-                        onClick={() => handleStarClick(step.stepNumber, star)}
-                    >
-                    </span>
+                        <span
+                            key={star}
+                            onClick={() => handleStarClick(star)}
+                        >
+                            {renderStar(star)}
+                        </span>
                     ))}
                 </div>
                 <span className="survey-rate-text">
@@ -33,7 +47,7 @@ const RatingComponent = ({ step }) => {
 
 RatingComponent.propTypes = {
     step: PropTypes.shape({
-        stepNumber: PropTypes.number.isRequired,
+        step_number: PropTypes.number.isRequired,
     }).isRequired,
 };
 

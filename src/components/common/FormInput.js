@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const FormInput = ({ type, name, placeholder, icon, required, onChange, value }) => {
     return (
+
         <div className={`form-input-inner position-relative has-float-label ${required ? 'required' : ''}`}>
             <input
                 type={type}
