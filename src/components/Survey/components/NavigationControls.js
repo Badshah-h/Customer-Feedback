@@ -1,24 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../../common/Button.js'; // Adjust path as needed
+import Button from '../../common/Button.js';
+import {useTranslation} from "react-i18next"; // Adjust path as needed
 
 const NavigationControls = ({ currentStep, totalSteps, onPrev, onNext }) => {
+    const { t } = useTranslation();
+
     return (
         <div className="actions">
             <ul>
                 {currentStep > 1 && (
                     <Button
                         type="prev"
-                        text="Previous"
+                        text={t('previous')}
                         onClick={onPrev}
-                        title="PREV"
+                        title={t('Previous')}
                         buttonType="button" // Explicitly set type
                     />
                 )}
                 {currentStep < totalSteps && (
                     <Button
-                        type="next"
-                        text="Next Question"
+                        type={t('next')}
+                        text={t('Next')}
                         onClick={onNext}
                         title="NEXT"
                         buttonType="button" // Explicitly set type

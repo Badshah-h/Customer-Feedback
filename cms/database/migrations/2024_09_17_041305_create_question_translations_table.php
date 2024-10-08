@@ -21,6 +21,9 @@ return new class extends Migration
           $table->timestamps();
 
           $table->unique(['question_id', 'locale']);
+
+          $table->index('question_id');
+          $table->index('locale');
         });
     }
 

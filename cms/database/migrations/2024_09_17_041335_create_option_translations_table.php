@@ -20,6 +20,9 @@ return new class extends Migration
           $table->timestamps();
 
           $table->unique(['option_id', 'locale']);
+
+          $table->index('option_id');
+          $table->index('locale');
         });
     }
 

@@ -88,9 +88,7 @@
       "description": "رأيك مهم! قم بتقييم شركتنا من 1 إلى 5 نجوم.",
       "question": "قيم مستوى سعادتك بالخدمة المقدمة؟",
       "type": "rating",
-      "options": [
-        { "value": "1 نجمة" }
-      ],
+      "options": [      ],
       "hasTextarea": true
     },
 

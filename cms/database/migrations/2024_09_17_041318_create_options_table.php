@@ -15,6 +15,9 @@ return new class extends Migration
           $table->id(); // Primary key
           $table->foreignId('question_id')->constrained()->onDelete('cascade');
           $table->timestamps();
+
+          $table->index('question_id');
+
         });
     }
 

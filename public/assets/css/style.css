@@ -20,6 +20,49 @@ body.rtl {
   text-align: right;
 }
 
+
+
+.steps-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.steps-list {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.steps-item {
+  width: 24px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.steps-item.active {
+  background-color: #ffffff; /* Active step color */
+}
+
+.steps-item.completed {
+  background-color: #D39931; /* Completed step color */
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: inherit;
+  border-radius: 50%;
+}
+
+
+
 /* Reset default margin and padding */
 * {
   margin: 0;
@@ -49,9 +92,7 @@ body {
 
 /* Ensure the steps container takes minimal space at the top */
 .steps-container {
-  width: 100%;
   text-align: center;
-  background-color: #f8f8f8; /* Optional styling */
 }
 
 .form-content {
@@ -161,7 +202,41 @@ body {
 
 
 
+/* For Tablets and smaller screens */
+@media (max-width: 768px) {
+  .steps-container {
+    bottom: 15px;  /* Slightly reduce spacing on smaller screens */
+    right: 15px;
+  }
 
+  .steps-item {
+    width: 16px;  /* Reduce size of the steps for smaller screens */
+    height: 16px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* For Phones and very small screens */
+@media (max-width: 480px) {
+  .steps-container {
+    bottom: 10px;  /* Further reduce spacing for phones */
+    right: 10px;
+  }
+
+  .steps-item {
+    width: 14px;  /* Reduce step size for very small screens */
+    height: 14px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+}
 
 
 
@@ -300,10 +375,10 @@ body {
   border: 0;
 }
 
-.service-review input[type="radio"]:checked + .review_select {
-  display: block;
-  background-color: #D39931;
-}
+/*.service-review input[type="radio"]:checked ~ .review_select {*/
+/*  display: block;*/
+/*  background-color: #D39931;*/
+/*}*/
 
 .service-review-text {
   font-size: 17px;
@@ -356,7 +431,7 @@ body {
 
 .jw-top-title span {
   display: block;
-  font-size: 15px;
+  font-size: 18px;
   color: #000000;
   font-weight: 500;
   margin: 10px;
@@ -388,22 +463,12 @@ body {
 }
 
 .language-icon {
-  margin-left: 8px;
-  font-size: 1.5rem;
+  margin-inline-end: 8px; /* Works like margin-right in ltr and margin-left in rtl */
+  font-size: 2rem;
   color: #D39931;
 }
 
-/* Styles for RTL when body has class "rtl" */
-body.rtl .language-icon {
-  margin-right: 8px; /* Use margin-right for RTL */
-  margin-left: 0; /* Reset margin-left for RTL */
-}
 
-/* Optionally, explicitly specify LTR styles */
-body.ltr .language-icon {
-  margin-left: 8px; /* Ensure margin-left for LTR */
-  margin-right: 0; /* Reset margin-right for LTR */
-}
 
 .language-select {
   padding: 5px 10px;
@@ -446,16 +511,13 @@ body.ltr .language-icon {
   color: #ffffff;
 }
 
-/*.card:hover, .survey-content:hover {*/
-/*  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);*/
-/*  transform: translateY(-5px);*/
-/*}*/
 /* Image Section */
 .card .survey-form-img {
   margin-bottom: 1.5rem;
   text-align: center;
   width: 100%;
   max-width: 100%;
+
 }
 
 .center-image {
@@ -475,6 +537,7 @@ body.ltr .language-icon {
   padding-bottom: 90px;
 }
 
+
 /* Text Section */
 .card .job-wizard-left-text {
   margin-bottom: 20px;
@@ -493,135 +556,18 @@ body.ltr .language-icon {
 .card .job-wizard-left-text p {
   color: #ffffff;
 
-  font-size: 1.2rem; /* Use rem units for scalability */
-  max-width: 100%; /* Ensure it fits within the container */
+  font-size: 1.2rem;
+  max-width: 100%;
   margin: 0 auto;
 }
 
 /* Copyright Section */
 .card .w-copyright {
   color: #ffffff;
-
-  font-size: 1rem; /* Adjusted font size */
-  text-align: center; /* Center the copyright text */
-  margin-top: 1rem; /* Margin for spacing */
-}
-
-
-
-/* Container Styling */
-.steps-container {
-  border-bottom: 2px solid #D39931;
-  background: linear-gradient(135deg, #D39931 0%, #ffffff 100%);
+  font-size: 1.2rem;
   text-align: center;
-  overflow: hidden; /* Prevent overflow issues */
+  margin-top: 1rem;
 }
-
-/* Steps List Styling */
-.steps-list {
-  counter-reset: step-counter;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 15px;
-  color: #ffffff;
-  box-sizing: border-box;
-  position: relative;
-  overflow: hidden; /* Prevent overflow issues */
-}
-
-/* Steps Item Styling */
-.steps-item {
-  flex: 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  border-radius: 30px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  overflow: hidden; /* Prevent overflow issues */
-}
-
-/* Active Step Styling */
-.steps-item.active {
-  color: #D39931;
-  transform: scale(1.1); /* Slightly enlarge the active step */
-  z-index: 1; /* Ensure it is on top */
-}
-
-/* Step Number Circle Styling */
-.steps-item::before {
-  content: counter(step-counter);
-  counter-increment: step-counter;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  border-radius: 50%;
-  background-color: #ffffff;
-  color: #D39931;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  border: 1px solid #ffffff;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Checkmark Styling */
-.checkmark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  font-size: 24px; /* Font size for checkmark */
-  color: #D39931; /* Checkmark color */
-  background-color: #ffffff; /* Checkmark background */
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: none; /* Hide by default */
-}
-
-.steps-item.completed .checkmark {
-  display: flex;
-}
-
-/* Step Connector Styling */
-.steps-item:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: -25px;
-  width: 50px;
-  height: 2px;
-  background-color: #D39931;
-  transform: translateY(-50%);
-  transition: background-color 0.3s ease;
-}
-
-/* Active Step Number Circle */
-.steps-item.active::before {
-  background-color: #000000;
-  color: #fff;
-}
-
-/* Active Connector */
-.steps-item.active + .steps-item::after {
-  background-color: #D39931; /* Active connector */
-}
-
-
-
-
 
 
 .survey-ratting {
@@ -674,15 +620,6 @@ body.ltr .language-icon {
   font-weight: 900;
   font-family: "Font Awesome 5 Free";
 }
-
-
-
-
-
-
-
-
-
 
 /*=========
 Color Code
@@ -1030,7 +967,6 @@ h6 {
 }
 
 
-
 /*---------------------------------------------------- */
 /*inner area*/
 /*----------------------------------------------------*/
@@ -1042,9 +978,6 @@ h6 {
 }
 
 /* Additional styles for RTL support */
-
-
-
 
 .job-wizard-left-text h1 {
   font-size: 2rem;
@@ -1064,10 +997,6 @@ h6 {
   color: black;
 
 }
-
-
-
-
 
 .wizard-content-1 .job-wizard-right-area {
   width: 55%;
@@ -1383,9 +1312,6 @@ h6 {
     font-size: 32px !important;
   }
 
-  .language-select {
-    font-size: 18px !important;
-  }
 }
 
 /* Media query for viewport widths around 1920px */
@@ -1408,9 +1334,6 @@ h6 {
     font-size: 28px !important;
   }
 
-  .language-select {
-    font-size: 16px !important;
-  }
 }
 
 /* Media query for viewport widths around 1440px */
@@ -1433,9 +1356,7 @@ h6 {
     font-size: 24px !important;
   }
 
-  .language-select {
-    font-size: 15px !important;
-  }
+
 }
 
 /* Media query for viewport widths around 1280px */
@@ -1457,9 +1378,7 @@ h6 {
     font-size: 20px !important;
   }
 
-  .language-select {
-    font-size: 14px !important;
-  }
+
 }
 
 /* Media query for viewport widths around 1199px */
@@ -1482,9 +1401,6 @@ h6 {
     font-size: 16px !important;
   }
 
-  .language-select {
-    font-size: 13px !important;
-  }
 }
 
 /* Media query for viewport widths around 991px */
@@ -1503,13 +1419,7 @@ h6 {
     font-size: 12px !important;
   }
 
-  .checkmark {
-    font-size: 14px !important;
-  }
 
-  .language-select {
-    font-size: 12px !important;
-  }
 }
 
 /* Media query for viewport widths around 767px */
@@ -1532,9 +1442,6 @@ h6 {
     font-size: 12px !important;
   }
 
-  .language-select {
-    font-size: 11px !important;
-  }
 }
 
 /* Media query for viewport widths around 580px */
@@ -1557,9 +1464,7 @@ h6 {
     font-size: 10px !important;
   }
 
-  .language-select {
-    font-size: 10px !important;
-  }
+
 }
 
 /* Media query for viewport widths around 480px */
@@ -1582,9 +1487,7 @@ h6 {
     font-size: 8px !important;
   }
 
-  .language-select {
-    font-size: 9px !important;
-  }
+
 }
 
 
@@ -1639,19 +1542,6 @@ h6 {
     margin-bottom: 30px; /* Increased margin for more spacing */
   }
 
-
-  .language-switcher {
-    margin-bottom: 30px; /* Increased margin */
-  }
-
-  .language-icon {
-    font-size: 2rem; /* Larger icon */
-  }
-
-  .language-select {
-    font-size: 1.2rem; /* Larger font size */
-    padding: 10px 15px; /* Increased padding */
-  }
 }
 
 /* Large Screens */
@@ -1661,18 +1551,8 @@ h6 {
   }
 
 
-  .language-switcher {
-    margin-bottom: 25px; /* Moderate margin */
-  }
 
-  .language-icon {
-    font-size: 1.8rem; /* Slightly larger icon */
-  }
 
-  .language-select {
-    font-size: 1.1rem; /* Slightly larger font size */
-    padding: 8px 12px; /* Moderate padding */
-  }
 }
 
 /* Medium Screens */
@@ -1682,18 +1562,7 @@ h6 {
   }
 
 
-  .language-switcher {
-    margin-bottom: 20px; /* Standard margin */
-  }
 
-  .language-icon {
-    font-size: 1.5rem; /* Standard icon size */
-  }
-
-  .language-select {
-    font-size: 1rem; /* Standard font size */
-    padding: 5px 10px; /* Standard padding */
-  }
 }
 
 /* Small Screens */
@@ -1708,18 +1577,8 @@ h6 {
   }
 
 
-  .language-switcher {
-    margin-bottom: 15px; /* Reduced margin */
-  }
 
-  .language-icon {
-    font-size: 1.3rem; /* Smaller icon size */
-  }
 
-  .language-select {
-    font-size: 0.9rem; /* Smaller font size */
-    padding: 4px 8px; /* Reduced padding */
-  }
 }
 
 /* Extra Small Screens */
@@ -1735,18 +1594,7 @@ h6 {
 
 
 
-  .language-switcher {
-    margin-bottom: 10px; /* Reduced margin */
-  }
 
-  .language-icon {
-    font-size: 1.2rem; /* Smaller icon size */
-  }
-
-  .language-select {
-    font-size: 0.8rem; /* Smaller font size */
-    padding: 3px 6px; /* Reduced padding */
-  }
 }
 
 /* Extra Extra Small Screens */
@@ -1766,18 +1614,7 @@ h6 {
 
 
 
-  .language-switcher {
-    margin: 0; /* Remove bottom margin */
-  }
 
-  .language-icon {
-    font-size: 1rem; /* Smaller icon size */
-  }
-
-  .language-select {
-    font-size: 0.7rem; /* Smaller font size */
-    padding: 2px 4px; /* Minimal padding */
-  }
 }
 
 
@@ -2017,10 +1854,6 @@ h6 {
   }
 
 
-  .language-switcher {
-    margin-bottom: 20px; /* Space below language switcher */
-  }
-
   .service-review label {
     display: block; /* Stack labels vertically */
     margin-bottom: 10px; /* Space between items */
@@ -2037,13 +1870,6 @@ h6 {
 }
 
 @media screen and (max-width: 480px) {
-
-
-  .language-switcher {
-    font-size: 0.7rem; /* Smaller font size */
-    margin-bottom: 30px; /* Minimal margin */
-  }
-
 
 
   .service-review label {
@@ -2064,12 +1890,6 @@ h6 {
     margin-bottom: 5px; /* Space between buttons */
   }
 }
-
-
-
-/*left side*//* Responsive Styles */
-
-
 
 
 

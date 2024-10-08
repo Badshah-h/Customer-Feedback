@@ -68,6 +68,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
   Route::get('/questions', [QuestionController::class, 'index']);
   Route::get('/questions/create', [QuestionController::class, 'create'])->name('questions.create');
   Route::post('/questions/save-question', [QuestionController::class, 'save'])->name('questions.save');
+  Route::post('/submit-survey', [\App\Http\Controllers\Answer\AnswerController::class, 'submit']);
+
 
 });
 

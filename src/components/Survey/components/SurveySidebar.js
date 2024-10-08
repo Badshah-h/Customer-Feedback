@@ -1,8 +1,7 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import logo from '../../../assets/images/logo.png';
-import LanguageSwitcher from "../../../localization/LanguageSwitcher.js";
+import logo from '../../../assets/images/New Project (2).png';
 
 const SurveySidebar = memo(({ title, description, currentStep, totalSteps }) => {
     const { t } = useTranslation();
@@ -10,11 +9,6 @@ const SurveySidebar = memo(({ title, description, currentStep, totalSteps }) => 
     return (
         <div className="survey-left-area">
             <div className="card">
-                <div className="header">
-                    <div className="language-switcher">
-                        <LanguageSwitcher />
-                    </div>
-                </div>
                 <div className="survey-form-img">
                     <img src={logo} alt={t('logoAltText')} className="center-image" />
                 </div>
@@ -24,6 +18,25 @@ const SurveySidebar = memo(({ title, description, currentStep, totalSteps }) => 
                 </div>
                 <div className="w-copyright">
                     {t('survey.copyright')}
+                </div>
+
+                <div className="steps-container">
+                    <ul className="steps-list">
+                        {Array.from({ length: totalSteps - 1 }, (_, index) => ( // Iterate till totalSteps -1
+                            <li
+                                key={index}
+                                className={`steps-item ${
+                                    currentStep > index + 1
+                                        ? 'completed'
+                                        : currentStep === index + 1
+                                            ? 'active'
+                                            : ''
+                                }`}
+                            >
+                                <div className="dot"></div>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </div>

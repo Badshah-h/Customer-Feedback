@@ -1,21 +1,24 @@
-import { LANGUAGE_EN } from './constants.js';
 
-export const getLocalizedTexts = (keys, language, translations) => {
-    const fallbackLanguage = LANGUAGE_EN;
-    const cache = {};
 
-    return keys.reduce((result, key) => {
-        if (cache[key]) {
-            result[key] = cache[key];
-            return result;
-        }
 
-        const localizedText = translations[language]?.[key]
-            || translations[fallbackLanguage]?.[key]
-            || `No localization for: ${key}`; // Simple message for missing localization
-
-        cache[key] = localizedText;
-        result[key] = localizedText;
-        return result;
-    }, {});
-};
+//
+// const componentMap = {
+//     radio: RadioComponent,
+//     rating: RatingComponent,
+//     contact: ContactComponent,
+// };
+//
+// const useQuestionComponent = (step) => {
+//     // Memoize the rendered and enhanced component
+//     return useMemo(() => {
+//         const Component = componentMap[step.type];
+//         if (!Component) return null;
+//
+//         // eslint-disable-next-line no-undef
+//         return React.cloneElement(
+//             <Component key={step.step_number} step={step} />,
+//             {
+//             }
+//         );
+//     }, [step,]);
+// };

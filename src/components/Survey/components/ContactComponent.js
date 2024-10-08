@@ -1,18 +1,18 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import FormInput from '../../common/FormInput.js';
 import PropTypes from "prop-types";
 import {useSurveyContext} from "../context/SurveyContext.js";
+import {QUESTION_TYPES} from "../../../utils/constants.js";
 
 const ContactComponent = ({ step }) => {
+    const { handleInputChange } = useSurveyContext();
 
-    const { handleInputChange, formValues } = useSurveyContext();
-
-    const handleChange = (event) => {
+    const handleChange = useCallback((event) => {
         const { name, value } = event.target;
-        handleInputChange(step.stepNumber, name, value);
-    };
+        handleInputChange(step.step_number, QUESTION_TYPES.CONTACT, { [name]: value });
+    }, [handleInputChange, step.step_number]);
 
-        return (
+    return (
         <div className="service-rating">
             <div className="details-form-area">
                 <div className="row">
@@ -24,7 +24,6 @@ const ContactComponent = ({ step }) => {
                             icon="envelope"
                             required
                             onChange={handleChange}
-                            value={formValues[step.stepNumber]?.email || ''}
                             />
                     </div>
                     <div className="col-lg-6">
@@ -34,7 +33,6 @@ const ContactComponent = ({ step }) => {
                             placeholder="Phone"
                             icon="phone"
                             onChange={handleChange}
-                            value={formValues[step.stepNumber]?.phone || ''}
                         />
                     </div>
                 </div>
@@ -43,10 +41,9 @@ const ContactComponent = ({ step }) => {
     );
 };
 
-// Define PropTypes
 ContactComponent.propTypes = {
     step: PropTypes.shape({
-        stepNumber: PropTypes.number.isRequired,
+        step_number: PropTypes.number.isRequired,
         email: PropTypes.string,
         phone: PropTypes.string,
     }).isRequired,
