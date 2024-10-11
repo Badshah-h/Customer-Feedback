@@ -40,26 +40,26 @@ const SurveyStepPanel = memo(function ({
                                         onPrev={handlePrevStep}
                                         onNext={handleNextStep} />
 
-                                    {submitting && <p>Submitting...</p>}
-                                    {submissionError && <p className="error-message">{submissionError.message}</p>}
-                                </>
-                            )}
-                        </div>
-                    </div>
-                </div>
+                  {submitting && <p>Submitting...</p>}
+                  {submissionError && <p className="error-message">{submissionError.message}</p>}
+                </>
+              )}
             </div>
-        </form>
-    );
+          </div>
+        </div>
+      </div>
+    </form>
+  );
 });
 
 SurveyStepPanel.propTypes = {
-    currentStep: PropTypes.number.isRequired,
-    totalSteps: PropTypes.number.isRequired,
-    handlePrevStep: PropTypes.func.isRequired,
-    handleNextStep: PropTypes.func.isRequired,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    children: PropTypes.node,
+  currentStep: PropTypes.number.isRequired,
+  totalSteps: PropTypes.number.isRequired,
+  handlePrevStep: PropTypes.func.isRequired,
+  handleNextStep: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  children: PropTypes.node,
 };
 
 

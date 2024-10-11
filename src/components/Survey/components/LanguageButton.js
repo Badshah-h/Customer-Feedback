@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const LanguageButtons = ({ onLanguageSelect, selectedLanguage = 'en', onStartSurvey }) => {
     const { t, i18n } = useTranslation();
-    const [showStartSurvey, setShowStartSurvey] = useState(false);
+    const [showStartSurvey, setShowStartSurvey] = useState(true);
 
     const handleLanguageChange = (lang) => {
         i18n.changeLanguage(lang);

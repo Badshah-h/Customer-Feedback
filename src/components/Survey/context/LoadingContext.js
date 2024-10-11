@@ -1,27 +1,23 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
-import Loader from "../../common/Loader.js";
+import React, {createContext, useContext, useState, useCallback} from 'react';
 
 const LoadingContext = createContext();
 
 export const useLoading = () => useContext(LoadingContext);
 
 export const LoadingProvider = ({ children }) => {
-    const [loadingCount, setLoadingCount] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
 
     const startLoading = useCallback(() => {
-        setLoadingCount((prev) => prev + 1);
+        setIsLoading(true);
     }, []);
 
     const stopLoading = useCallback(() => {
-        setLoadingCount((prev) => Math.max(0, prev - 1));
+        setIsLoading(false);
     }, []);
 
-    const isLoading = loadingCount > 0;
-
     return (
-        <LoadingContext.Provider value={{ startLoading, stopLoading, isLoading }}>
+        <LoadingContext.Provider value={{ isLoading, startLoading, stopLoading }}>
             {children}
-            {isLoading && <Loader message="Loading..." />} {/* Use your Loader component */}
         </LoadingContext.Provider>
     );
 };
