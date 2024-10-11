@@ -1,3 +1,8 @@
+html, body {
+    overflow: hidden;
+    height: 100%;
+}
+
 body {
     font-family: 'Jost', sans-serif;
 }
@@ -5,26 +10,94 @@ body {
 .animate-text-shimmer {
     animation: text-shimmer 3s linear infinite;
 }
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
 
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    to {
+        background-position: 200% center;
+    }
+}
 /* Loader.css */
 .loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full height for centering */
-    background-color: rgba(202, 138, 4, 0.8); /* Your specified color */
+    z-index: 9999;
+}
+
+.loader-circle {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-circle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 10px solid rgba(255, 255, 255, 0.5); /* White border with 50% opacity */
+    animation: spin 1s linear infinite; /* Circle rotation */
 }
 
 .loader-logo {
-    width: 100px; /* Adjust size as needed */
-    height: auto; /* Maintain aspect ratio */
+    height: 80px;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Make the logo appear on top of the circle */
 }
 
-.loader-message {
-    font-size: 1.5rem; /* Adjust font size */
-    color: white; /* Change text color as needed */
-    margin-top: 1rem;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 
@@ -75,6 +148,9 @@ body {
     justify-content: space-between;
     padding: 20px;
     background-color: #000000;
+    width: 100%;
+    max-width: 1200px; /* Adjust this value as needed */
+    margin: 0 auto; /* Center the footer */
 }
 .footer-column {
     flex: 1;

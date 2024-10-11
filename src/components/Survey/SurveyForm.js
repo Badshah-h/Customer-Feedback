@@ -52,10 +52,6 @@ const SurveyForm = () => {
         setCurrentStep(prev => Math.min(prev + 1, totalSteps));
     };
 
-    if (loading) {
-        return <Loader message="Loading Survey data..." />;
-    }
-
     const translatedQuestionText = currentTranslation?.question_text;
 
     return (

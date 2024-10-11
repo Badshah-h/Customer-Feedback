@@ -40,11 +40,11 @@ const useSubmitSurvey = () => {
                     questions: questions,
                 },
             };
-
-            console.log(dataToSave);
             await submitSurveyResponses(dataToSave);
             setIsSubmitted(true);
-            resetForm();
+            setTimeout(() => {
+                window.location.reload();
+            }, 10000);
         } catch (error) {
             console.error('Error submitting survey:', error);
             setSubmissionError(error);
