@@ -42,6 +42,7 @@ const useSubmitSurvey = () => {
             };
             await submitSurveyResponses(dataToSave);
             setIsSubmitted(true);
+            resetForm();
         } catch (error) {
             console.error('Error submitting survey:', error);
             setSubmissionError(error);
